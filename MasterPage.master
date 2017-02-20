@@ -33,17 +33,14 @@
                 &nbsp;&nbsp;
                 <asp:Label ID="labelName" runat="server" Text="MY Name"></asp:Label>
                &nbsp;
-                <asp:TextBox ID="textBoxEmail" runat="server" OnTextChanged="TextBox1_TextChanged">Email</asp:TextBox>
-                &nbsp;
-                <asp:TextBox ID="textBoxPassword" runat="server" TextMode="Password">Password</asp:TextBox>
-                &nbsp;
-                <asp:Button ID="logBtn" runat="server" Text="Log in" OnClick="Button8_Click1" />
                
-                <asp:LinkButton ID="LinkButton1" runat="server" ForeColor="Red" OnClick="LinkButton1_Click">CreateAccount</asp:LinkButton>
+                &nbsp;
+                <asp:Button ID="logBtn" runat="server" Text="Log in" OnClick="Login"/>
+               
+              
                
              &nbsp;&nbsp;&nbsp;
                 <br />
-&nbsp;<asp:CheckBox ID="checkBoxAdmin" runat="server" Text="Log in as admin" />
                
              <br />
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -91,8 +88,6 @@
                     <br />
 &nbsp;-
                     <asp:LinkButton ID="LinkButton6" runat="server" OnClick="LinkButton6_Click">Children</asp:LinkButton>
-                    <br />
-&nbsp;<asp:LinkButton ID="linkAdministrator" runat="server" OnClick="linkAdministrator_Click">Administrator&#39;s tools</asp:LinkButton>
                     <br />
                     <asp:LinkButton ID="linkProfile" runat="server" OnClick="linkProfile_Click">Edit profile</asp:LinkButton>
                     <br />

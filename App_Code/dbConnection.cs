@@ -41,13 +41,23 @@ public class dbConnection
     }
     public MySqlDataReader Select(String sqlQuery)
     {
-        System.Diagnostics.Debug.WriteLine("SELECT");
-        connection();
-        System.Diagnostics.Debug.WriteLine("Command: " +sqlQuery);
-        MySqlCommand comm = new MySqlCommand(sqlQuery, conn);
-        System.Diagnostics.Debug.WriteLine("Reader");
-        MySqlDataReader result = comm.ExecuteReader();
-        return result;
+        MySqlDataReader result = null;
+        try
+        {
+            System.Diagnostics.Debug.WriteLine("SELECT");
+            connection();
+            System.Diagnostics.Debug.WriteLine("Command: " + sqlQuery);
+            MySqlCommand comm = new MySqlCommand(sqlQuery, conn);
+            System.Diagnostics.Debug.WriteLine("Reader");
+            result = comm.ExecuteReader();
+            return result;
+        }
+        catch (MySqlException ex)
+        {
+            System.Diagnostics.Debug.WriteLine(ex.StackTrace);
+        }
+        return result; 
+
     }
     public void insert(String sqlQuery)
     {
