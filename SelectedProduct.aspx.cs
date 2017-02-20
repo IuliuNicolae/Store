@@ -12,7 +12,7 @@ public partial class SelectedProduct : System.Web.UI.Page
     MySql.Data.MySqlClient.MySqlCommand cmd;
     MySql.Data.MySqlClient.MySqlDataReader reader;
     string queryStr;
-    string id;
+    int id;
     string title;
     string category;
     string artists;
@@ -29,7 +29,7 @@ public partial class SelectedProduct : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
 
-        id= (string)Session["ID"];
+        id= (int)Session["ID"];
         numberOfItems = Convert.ToInt32(Session["nbrOfItems"]);      
        // 
         String connString = System.Configuration.ConfigurationManager.ConnectionStrings["WebbAppConnString"].ToString();
@@ -108,7 +108,7 @@ public partial class SelectedProduct : System.Web.UI.Page
                 price = tempPrice + "";
                 updateQuantity(i, id);
                 myMovies = (List<Movies>)Session["myMovies"];
-                myMovies.Add(new Movies(id, title,category, artists, price, mySquantity));
+                myMovies.Add(new Movies(id, title,category, artists, price, mySquantity,"",""));
                 Session["myMovies"] = myMovies;
                 Response.Redirect("CheckOut.aspx");
 
@@ -122,7 +122,7 @@ public partial class SelectedProduct : System.Web.UI.Page
         Response.Redirect("BookPage.aspx");
     }
 
-    protected void updateQuantity(int q, string id)
+    protected void updateQuantity(int q, int id)
     {
         try
         {

@@ -47,7 +47,7 @@ public partial class CheckOut : System.Web.UI.Page
       
         labelPrice.Text = "";
         int id = Convert.ToInt32(e.RowIndex);
-        string idTemp = movies[id].Id;
+        string idTemp = ""+movies[id].Id;
         string tempMyQuantity = movies[id].Quantity;
         string allQantity = getAllQuantity(idTemp);
         int tempNewQ = (Convert.ToInt32(allQantity) + Convert.ToInt32(tempMyQuantity));

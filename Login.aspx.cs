@@ -16,6 +16,7 @@ public partial class Login : System.Web.UI.Page
         string email = emailTB.Text;
         string pass = passTB.Text;
         string loginpass = "";
+        string loginemail = "";
         string firstName = "";
         string lastName = "";
         string adress = "";
@@ -35,7 +36,6 @@ public partial class Login : System.Web.UI.Page
                 while (reader.Read())
                 {
                     System.Diagnostics.Debug.WriteLine("reads");
-
                     firstName = reader.GetString(reader.GetOrdinal("firstName"));
                     lastName = reader.GetString(reader.GetOrdinal("lastName"));
                     loginpass = reader.GetString(reader.GetOrdinal("password"));
