@@ -37,6 +37,5 @@ public partial class SetRate : System.Web.UI.Page
    
     protected void RadioButtonList1_SelectedIndexChanged1(object sender, EventArgs e)
     {
-        if 
     }
 }
