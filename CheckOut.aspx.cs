@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
 public partial class CheckOut : System.Web.UI.Page
@@ -17,6 +18,7 @@ public partial class CheckOut : System.Web.UI.Page
     private double totalPrice;
     protected void Page_Load(object sender, EventArgs e)
     {
+
         actualCustomer = new Customers();
         actualCustomer = (Customers)Session["myCustomer"];
         movies = (List<Movies>)Session["myMovies"];
@@ -27,6 +29,8 @@ public partial class CheckOut : System.Web.UI.Page
         }
         else
         {
+            
+
             showContent.DataSource = movies;
             showContent.DataBind();
             labelPrice.Text = getPrice(movies);
@@ -193,5 +197,24 @@ public partial class CheckOut : System.Web.UI.Page
 
         
     }
-    
+
+
+    protected void payNow_Click(object sender, EventArgs e)
+    {
+        
+
+        //for (int i = 0; i < movies.Count; i++)
+        //{
+        //    HtmlInputHidden hidden = new HtmlInputHidden();
+
+        //    hidden.Name = "item_name_" + i + 1;
+        //    hidden.Value = movies[i].Title;
+        //    hidden = new HtmlInputHidden();
+        //    hidden.Name = "amount_" + i + 1;
+        //    hidden.Value = movies[i].Price;
+        //    hidden = new HtmlInputHidden();
+        //    hidden.Name = "quantity_" + i + 1;
+        //    hidden.Value = movies[i].Quantity;
+        //}     
+    }
 }

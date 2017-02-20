@@ -17,9 +17,7 @@ public partial class _Default : System.Web.UI.Page
 
     protected void Button1_Click(object sender, EventArgs e)
     {
-        Session["searchQuerry"] = textBoxSearch.Text;
-        System.Diagnostics.Debug.WriteLine("SomeText1 " + textBoxSearch.Text);
-        Response.Redirect("BookPage.aspx");
+        
     }
 
 }
