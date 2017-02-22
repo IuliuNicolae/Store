@@ -29,7 +29,7 @@ public partial class SelectedProduct : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
 
-        id= (int)Session["ID"];
+        id= Convert.ToInt32(Session["ID"]);
         numberOfItems = Convert.ToInt32(Session["nbrOfItems"]);      
        // 
         String connString = System.Configuration.ConfigurationManager.ConnectionStrings["WebbAppConnString"].ToString();
@@ -108,10 +108,16 @@ public partial class SelectedProduct : System.Web.UI.Page
                 price = tempPrice + "";
                 updateQuantity(i, id);
                 myMovies = (List<Movies>)Session["myMovies"];
-                myMovies.Add(new Movies(id, title,category, artists, price, mySquantity,"",""));
+                Movies m = new Movies(id, title, category, artists, price, mySquantity, "", "");
+                myMovies.Add(m);
+                
                 Session["myMovies"] = myMovies;
+                Cart c = new Cart();
+                c = (Cart)Session["myCart"];
+                c.addToCart(m);
+                Session["myCart"] = c;
                 Response.Redirect("CheckOut.aspx");
-
+                
             }
         }
     }

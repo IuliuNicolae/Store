@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -24,6 +23,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
 
     Customers actualCustomer;
     Administrator actualAdmin;
+    Cart cart;
     protected void Page_Load(object sender, EventArgs e)
     {
         //    myBooks = new List<Books>();
@@ -34,22 +34,20 @@ public partial class MasterPage : System.Web.UI.MasterPage
 
             // book = new Books();
             actualCustomer = new Customers();
-            actualAdmin = new Administrator();
-
-            actualAdmin = (Administrator)Session["myAdministrator"];
-
             actualCustomer = (Customers)Session["myCustomer"];
+            cart = new Cart();
+            cart = (Cart)Session["myCart"];
             string name = "";
-            if (actualCustomer == null && actualAdmin == null)
+            if (actualCustomer == null)
             {
                 name = "You are not logged in as customer or admin!";
             }
-            else if (actualCustomer == null && actualAdmin != null)
+            else if (actualCustomer == null)
             {
                 name = actualAdmin.Name;
                 logBtn.Text = "Log out";
             }
-            else if (actualCustomer != null && actualAdmin == null)
+            else if (actualCustomer != null)
             {
                 name = actualCustomer.FirstName;
                 logBtn.Text = "Log out";
@@ -299,6 +297,16 @@ public partial class MasterPage : System.Web.UI.MasterPage
           conn.Close();*/
 
     }
-
-
+    protected void bindItemsToCart()
+    {
+        Cart cart = (Cart)Session["myCart"];
+        foreach (Movies m in cart.movielistclass){
+            TableRow tr = new TableRow();
+            TableCell tc = new TableCell();
+            tc.Text = m.Title;
+            tr.Cells.Add(tc);
+            tc.Text = m.Price;
+            tr.Cells.Add(tc);
+            cartT.Rows.Add(tr);        }
+    }
 }

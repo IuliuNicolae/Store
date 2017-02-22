@@ -7,9 +7,12 @@ using System.Web.UI.WebControls;
 
 public partial class _Default : System.Web.UI.Page
 {
-    
+    int numberOfItems = 0;
     protected void Page_Load(object sender, EventArgs e)
     {
+        List<Movies> myMovies = new List<Movies>();
+        Session["myMovies"] = myMovies;
+        Session["nbrOfItems"] = numberOfItems;
 
         addmoviestotable();
 
@@ -48,7 +51,8 @@ public partial class _Default : System.Web.UI.Page
             Movies mov = new Movies(id,title,cat,artist,price,quant,imdb,pic);
             movielist.Add(mov);
         }
-        
+        System.Diagnostics.Debug.WriteLine("movielist count : "+movielist.Count);
+        if (movielist.Count != 0) { 
         for (int i = 0;i < 3 ;i++)
         {
             Random ran = new Random();
@@ -64,6 +68,10 @@ public partial class _Default : System.Web.UI.Page
             Image1.ImageUrl = pic;
 
            
+        }
+        }else
+        {
+
         }
     }
     
