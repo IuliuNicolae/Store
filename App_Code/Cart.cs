@@ -6,25 +6,11 @@ using System.Web;
 /// <summary>
 /// Summary description for Orders
 /// </summary>
-public class Orders
+public class Cart
 {
-    int id;
     string customerId;
-    string titles;
+    List<Movies> titles;
     string price;
-
-    public int Id
-    {
-        get
-        {
-            return id;
-        }
-
-        set
-        {
-            id = value;
-        }
-    }
 
     public string CustomerId
     {
@@ -39,7 +25,7 @@ public class Orders
         }
     }
 
-    public string Titles
+    public List<Movies> Titles
     {
         get
         {
@@ -50,6 +36,13 @@ public class Orders
         {
             titles = value;
         }
+    }
+    public void addToCart(Movies mov) {
+        titles.Add(mov);
+    }
+    public void removeFromCart(Movies mov)
+    {
+        titles.Remove(mov);
     }
 
     public string Price
@@ -65,14 +58,9 @@ public class Orders
         }
     }
 
-    public Orders()
+    public Cart()
     {
-        
+        this.titles = new List<Movies>();
     }
-    public Orders(int id, string customerId, string titles, string price) {
-        this.id = id;
-        this.customerId = customerId;
-        this.titles = titles;
-        this.price = price;
-    }
+    
 }
