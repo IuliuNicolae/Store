@@ -380,8 +380,10 @@ public partial class MasterPage : System.Web.UI.MasterPage
 
     protected void LinkButton8_Click(object sender, EventArgs e)
     {
+        if(actualCustomer != null) { 
         Response.Redirect("CheckOut.aspx");
     }
+}
     protected string getPrice()
     {
         double totalPrice = 0;
@@ -435,6 +437,10 @@ public partial class MasterPage : System.Web.UI.MasterPage
 
     protected void LinkButton8_Click1(object sender, EventArgs e)
     {
-        Response.Redirect("SetRate.aspx");
+        if (actualCustomer != null)
+        {
+            Response.Redirect("SetRate.aspx");
+        }
+        
     }
 }
