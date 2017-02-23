@@ -17,7 +17,7 @@ public partial class Email : System.Web.UI.Page
     protected void Button1_Click(object sender, EventArgs e)
     {
         MailMessage o = new MailMessage("iuliunicolaebarcan@gmail.com", "iuliunicolaebarcan@gmail.com", "grattis", "you have a new acount");
-        NetworkCredential netCred = new NetworkCredential("iuliunicolaebarcan@gmail.com", "tarabostes");
+        NetworkCredential netCred = new NetworkCredential("iuliunicolaebarcan@gmail.com", "VladTepes");
         SmtpClient smtpobj = new SmtpClient("smtp.gmail.com", 587);
         smtpobj.EnableSsl = true;
         smtpobj.Credentials = netCred;

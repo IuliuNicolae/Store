@@ -4,7 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
+using System.Net;
+using System.Net.Mail;
 public partial class insertUser : System.Web.UI.Page
 {
     string firstName,lastName,pass,email,adress, phone,opr;
@@ -35,5 +36,15 @@ public partial class insertUser : System.Web.UI.Page
         cmd = new MySql.Data.MySqlClient.MySqlCommand(queryStr, conn);
         cmd.ExecuteReader();
         conn.Close();
+        sendMail();
+    }
+    private void sendMail()
+    {
+        MailMessage o = new MailMessage("pstudent345@gmail.com", email, "grattis", "you have a new acount");
+        NetworkCredential netCred = new NetworkCredential("pstudent345@gmail.com", "student123");
+        SmtpClient smtpobj = new SmtpClient("smtp.gmail.com", 587);
+        smtpobj.EnableSsl = true;
+        smtpobj.Credentials = netCred;
+        smtpobj.Send(o);
     }
 }

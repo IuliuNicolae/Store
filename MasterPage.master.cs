@@ -17,6 +17,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
     string email;
     string street;
     string phone;
+    
     string totalPrice = "";
     static Random rnd;
     //  List<Books> myBooks;
@@ -158,13 +159,19 @@ public partial class MasterPage : System.Web.UI.MasterPage
                    
                 }
                 dbc.close();
-                if (loginpass.Equals(pass))
+                if (loginpass.Equals(pass) && type.Equals("user"))
                 {
 
                     Customers myCustomer = new Customers(firstName, lastName, email, loginpass, adress, phone);
                     Session["myCustomer"] = myCustomer;
                     labelName.Text = myCustomer.FirstName;
 
+                }
+                else if (loginpass.Equals(pass) && type.Equals("admin")) {
+                    System.Diagnostics.Debug.Write("ADDDDDDDDDDDDDDDDDDDDMMMMMMMMMMMMMMMIIIIIIIIIIIIIIIIIINNNNNNNNNNNNNNN");
+                    Customers myCustomer = new Customers(firstName, lastName, email, loginpass, adress, phone);
+                    Session["myAdministrator"] = myCustomer;
+                    labelName.Text ="Admin "+ myCustomer.FirstName;
                 }
                 else
                 {

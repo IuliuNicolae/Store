@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Net.Mail;
 
 public partial class RegisterNewCustomer : System.Web.UI.Page
@@ -50,10 +51,10 @@ public partial class RegisterNewCustomer : System.Web.UI.Page
                 conn.Close();
 
 
-
         
+
         clearBoxes();
-      
+        sendMail();
     }
     private void clearBoxes()
     {
@@ -64,5 +65,12 @@ public partial class RegisterNewCustomer : System.Web.UI.Page
         textBoxStreet.Text = " ";
         textBoxPhone.Text = " ";
     }
-    
+    private void sendMail() {
+        MailMessage o = new MailMessage("iuliunicolaebarcan@gmail.com", "iuliunicolaebarcan@gmail.com", "grattis", "you have a new acount");
+        NetworkCredential netCred = new NetworkCredential("iuliunicolaebarcan@gmail.com", "VladTepes");
+        SmtpClient smtpobj = new SmtpClient("smtp.gmail.com", 587);
+        smtpobj.EnableSsl = true;
+        smtpobj.Credentials = netCred;
+        smtpobj.Send(o);
+    }
 }
