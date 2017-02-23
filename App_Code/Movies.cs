@@ -8,7 +8,7 @@ using System.Web;
 /// </summary>
 public class Movies
 {
-    int id;
+    string id;
     string title;
     string category;
     string artists;
@@ -16,21 +16,9 @@ public class Movies
     string quantity;
     string imdbLink;
     string picture;
+  
 
-    
-    public Movies( int id,string title,string category,string artists,string price,string quantity, string imdbLink, string picture) {
-        this.id = id;
-        this.title = title;
-        this.category = category;
-        this.artists = artists;
-        this.price = price;
-        this.quantity = quantity;
-        this.imdbLink = imdbLink;
-        this.picture = picture;
-      
-      
-            }
-    public int Id
+    public string Id
     {
         get
         {
@@ -55,18 +43,6 @@ public class Movies
             title = value;
         }
     }
-    public string Category
-    {
-        get
-        {
-            return category;
-        }
-
-        set
-        {
-            category = value;
-        }
-    }
 
     public string Artists
     {
@@ -80,20 +56,7 @@ public class Movies
             artists = value;
         }
     }
-    public string Price
-    {
-        get
-        {
-            return price;
-        }
 
-        set
-        {
-            price = value;
-        }
-    }
-
-    
     public string Quantity
     {
         get
@@ -133,4 +96,62 @@ public class Movies
         }
     }
 
+    public string Price
+    {
+        get
+        {
+            return price;
+        }
+
+        set
+        {
+            price = value;
+        }
+    }
+
+    public string Category
+    {
+        get
+        {
+            return category;
+        }
+
+        set
+        {
+            category = value;
+        }
+    }
+
+    public Movies()
+    {
+        
+    }
+    public Movies( string id,string title,string category,string artists,string price,string quantity, string imdbLink, string picture) {
+        this.id = id;
+        this.title = title;
+        this.category = category;
+        this.artists = artists;
+        this.price = price;
+        this.quantity = quantity;
+        this.imdbLink = imdbLink;
+        this.picture = picture;
+      
+      
+            }
+    public Movies( string id, string title,string category, string artists, string price, string quantity)
+    {
+        this.id = id;
+        this.title = title;
+        this.category = category;
+        this.artists = artists;
+        this.price = price;
+        this.quantity = quantity;
+       
+
+    }
+    public Movies(string id, string title)
+    {
+        this.id = id;
+        this.title = title;
+    }
 }

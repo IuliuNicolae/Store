@@ -4,7 +4,7 @@
 }
 /*body*/
 body {
-    color: black;
+    color: red;
     font-family: Arial,Arial, Helvetica, sans-serif;
     font-size: 22px;
     height: 861px;
@@ -28,6 +28,7 @@ body {
 }
 .main {
     width:60%;
+    background:url(old.jpg);
     height:568px;
     float:left;
    

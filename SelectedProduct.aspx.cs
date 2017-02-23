@@ -12,12 +12,14 @@ public partial class SelectedProduct : System.Web.UI.Page
     MySql.Data.MySqlClient.MySqlCommand cmd;
     MySql.Data.MySqlClient.MySqlDataReader reader;
     string queryStr;
-    int id;
+    string id;
     string title;
     string category;
     string artists;
-    //string customerRate;
-   // string coments;
+    int rates;
+    string comments;
+    List<string> allComments;
+  
     string price;
     string quantity;
     string imdbLink;
@@ -28,8 +30,9 @@ public partial class SelectedProduct : System.Web.UI.Page
   
     protected void Page_Load(object sender, EventArgs e)
     {
-
-        id= Convert.ToInt32(Session["ID"]);
+        rates = 0;
+        allComments = new List<string>();
+        id= (string)Session["ID"];
         numberOfItems = Convert.ToInt32(Session["nbrOfItems"]);      
        // 
         String connString = System.Configuration.ConfigurationManager.ConnectionStrings["WebbAppConnString"].ToString();
@@ -55,11 +58,36 @@ public partial class SelectedProduct : System.Web.UI.Page
         labelTitle.Text = title;
         LabelCategory.Text = category;
         labelDistribution.Text = artists;
-        LabelIMDB.Text = imdbLink;
-       // labelRate.Text = customerRate;
+       
+        myLink.Title = imdbLink;
+        myLink.Attributes["href"] = imdbLink;
+        // labelRate.Text = customerRate;
         labelPrice.Text = price;
         labelQuantity.Text = quantity;
         imageBook.ImageUrl = "~/Styles/" + picture + ".gif";
+
+        //////////
+        conn.Open();
+        queryStr = "";
+        queryStr = "SELECT * from comments where movies_id= '" + id + "'";
+        cmd = new MySql.Data.MySqlClient.MySqlCommand(queryStr, conn);
+        reader = cmd.ExecuteReader();
+        int count = 1;
+        while (reader.Read())
+        {
+            comments = reader.GetString(reader.GetOrdinal("comment"));
+            rates = rates+reader.GetInt32(reader.GetOrdinal("betyg"));
+            allComments.Add(comments);
+            count = count + 1;
+            
+        }
+        conn.Close();
+        double myRate = rates / (count-1);
+        labelRate.Text = myRate+"";
+        for (int i = 0; i < allComments.Count; i++) {
+            textBoxComments.Text+= allComments[i].Trim() + Environment.NewLine;
+        }
+        System.Diagnostics.Debug.Write("Rate: " + rates + " Count: " + count + " MyRates: " + myRate);
     }
 
 
@@ -108,16 +136,10 @@ public partial class SelectedProduct : System.Web.UI.Page
                 price = tempPrice + "";
                 updateQuantity(i, id);
                 myMovies = (List<Movies>)Session["myMovies"];
-                Movies m = new Movies(id, title, category, artists, price, mySquantity, "", "");
-                myMovies.Add(m);
-                
+                myMovies.Add(new Movies(id, title,category, artists, price, mySquantity));
                 Session["myMovies"] = myMovies;
-                Cart c = new Cart();
-                c = (Cart)Session["myCart"];
-                c.addToCart(m);
-                Session["myCart"] = c;
                 Response.Redirect("CheckOut.aspx");
-                
+
             }
         }
     }
@@ -128,7 +150,7 @@ public partial class SelectedProduct : System.Web.UI.Page
         Response.Redirect("BookPage.aspx");
     }
 
-    protected void updateQuantity(int q, int id)
+    protected void updateQuantity(int q, string id)
     {
         try
         {
@@ -149,4 +171,9 @@ public partial class SelectedProduct : System.Web.UI.Page
 
     }
 
+
+    protected void LinkButton8_Click(object sender, EventArgs e)
+    {
+      
+    }
 }

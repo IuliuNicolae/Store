@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
 public partial class CheckOut : System.Web.UI.Page
@@ -13,25 +12,21 @@ public partial class CheckOut : System.Web.UI.Page
 
 
     Customers actualCustomer;
-    List<Movies> movies;
+    List<Movies>movies;
     
     private double totalPrice;
     protected void Page_Load(object sender, EventArgs e)
     {
-
         actualCustomer = new Customers();
         actualCustomer = (Customers)Session["myCustomer"];
-        movies = new List<Movies>();
         movies = (List<Movies>)Session["myMovies"];
        
-        if (movies.Count <= 0)
+        if (movies.Count == 0)
         {
            labelPrice.Text = "The cart is empty or you are not logged in!!!!";
         }
         else
         {
-            
-
             showContent.DataSource = movies;
             showContent.DataBind();
             labelPrice.Text = getPrice(movies);
@@ -52,7 +47,7 @@ public partial class CheckOut : System.Web.UI.Page
       
         labelPrice.Text = "";
         int id = Convert.ToInt32(e.RowIndex);
-        string idTemp = ""+movies[id].Id;
+        string idTemp = movies[id].Id;
         string tempMyQuantity = movies[id].Quantity;
         string allQantity = getAllQuantity(idTemp);
         int tempNewQ = (Convert.ToInt32(allQantity) + Convert.ToInt32(tempMyQuantity));
@@ -198,24 +193,5 @@ public partial class CheckOut : System.Web.UI.Page
 
         
     }
-
-
-    protected void payNow_Click(object sender, EventArgs e)
-    {
-        
-
-        //for (int i = 0; i < movies.Count; i++)
-        //{
-        //    HtmlInputHidden hidden = new HtmlInputHidden();
-
-        //    hidden.Name = "item_name_" + i + 1;
-        //    hidden.Value = movies[i].Title;
-        //    hidden = new HtmlInputHidden();
-        //    hidden.Name = "amount_" + i + 1;
-        //    hidden.Value = movies[i].Price;
-        //    hidden = new HtmlInputHidden();
-        //    hidden.Name = "quantity_" + i + 1;
-        //    hidden.Value = movies[i].Quantity;
-        //}     
-    }
+    
 }

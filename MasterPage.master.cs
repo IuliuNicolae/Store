@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -23,7 +24,6 @@ public partial class MasterPage : System.Web.UI.MasterPage
 
     Customers actualCustomer;
     Administrator actualAdmin;
-    Cart cart;
     protected void Page_Load(object sender, EventArgs e)
     {
         //    myBooks = new List<Books>();
@@ -34,20 +34,22 @@ public partial class MasterPage : System.Web.UI.MasterPage
 
             // book = new Books();
             actualCustomer = new Customers();
+            actualAdmin = new Administrator();
+
+            actualAdmin = (Administrator)Session["myAdministrator"];
+
             actualCustomer = (Customers)Session["myCustomer"];
-            cart = new Cart();
-            cart = (Cart)Session["myCart"];
             string name = "";
-            if (actualCustomer == null)
+            if (actualCustomer == null && actualAdmin == null)
             {
                 name = "You are not logged in as customer or admin!";
             }
-            else if (actualCustomer == null)
+            else if (actualCustomer == null && actualAdmin != null)
             {
                 name = actualAdmin.Name;
                 logBtn.Text = "Log out";
             }
-            else if (actualCustomer != null)
+            else if (actualCustomer != null && actualAdmin == null)
             {
                 name = actualCustomer.FirstName;
                 logBtn.Text = "Log out";
@@ -89,7 +91,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
 
     protected void Button8_Click(object sender, EventArgs e)
     {
-        
+
     }
 
     protected void TextBox1_TextChanged(object sender, EventArgs e)
@@ -97,12 +99,19 @@ public partial class MasterPage : System.Web.UI.MasterPage
 
     }
 
-    protected void Login(object sender, EventArgs e)
+    protected void Button8_Click1(object sender, EventArgs e)
     {
-       
+        if (checkBoxAdmin.Checked)
+        {
+            Session.Clear();
+            logInAmin();
+            logBtn.Text = "Log out";
+        }
+        else
+        {
             if (logBtn.Text.Equals("Log in"))
             {
-            Response.Redirect("Login.aspx");
+                logIn();
                 logBtn.Text = "Log out";
             }
             else if (logBtn.Text.Equals("Log out"))
@@ -110,14 +119,117 @@ public partial class MasterPage : System.Web.UI.MasterPage
                 logOut();
 
             }
-        
+        }
     }
     protected void logOut()
     {
         Session.Clear();
         Response.Redirect("Default.aspx");
     }
-    
+    protected void logIn()
+    {
+        email = textBoxEmail.Text;
+        pass = textBoxPassword.Text;
+        string loginpass="";
+        string firstName = "";
+        string lastName = "";
+        string adress = "";
+        string phone = "";
+        string type = "";
+        if (email != " ")
+        {
+            try
+            {
+                dbConnection dbc = dbConnection.Instance();
+                queryStr = "SELECT * from user where email = '" + email + "'";
+
+                reader = dbc.Select(queryStr);
+                System.Diagnostics.Debug.WriteLine("read reader");
+                while (reader.Read())
+                {
+                    System.Diagnostics.Debug.WriteLine("reads");
+
+                    firstName = reader.GetString(reader.GetOrdinal("firstName"));
+                    lastName = reader.GetString(reader.GetOrdinal("lastName"));
+                    loginpass = reader.GetString(reader.GetOrdinal("password"));          
+                    adress = reader.GetString(reader.GetOrdinal("address"));
+                    phone = reader.GetString(reader.GetOrdinal("phone"));
+                    type = reader.GetString(reader.GetOrdinal("type"));
+                   
+                }
+                dbc.close();
+                if (loginpass.Equals(pass))
+                {
+
+                    Customers myCustomer = new Customers(firstName, lastName, email, loginpass, adress, phone);
+                    Session["myCustomer"] = myCustomer;
+                    labelName.Text = myCustomer.FirstName;
+
+                }
+                else
+                {
+
+                    labelName.Text = "Invalid email or password";
+                    Response.Redirect("Default.aspx");
+
+                }
+            }
+            catch (MySql.Data.MySqlClient.MySqlException ex)
+            {
+                Response.Redirect("Default.aspx");
+                labelName.Text = "Your email is not valid";
+            }
+
+        }
+        else
+        {
+            labelName.Text = "You must enter your email";
+        }
+
+
+
+    }
+    protected void logInAmin()
+    {
+        email = textBoxEmail.Text;
+        if (email != " ")
+        {
+            try
+            {
+                dbConnection dbc = dbConnection.Instance();
+                queryStr = "SELECT * from  administrator where administratorEmail= '" + email + "'";
+
+                reader = dbc.Select(queryStr);
+                while (reader.Read())
+                {
+                    id = reader.GetInt32(reader.GetOrdinal("administratorId")) + "";
+                    name = reader.GetString(reader.GetOrdinal("administratorName"));
+                    pass = reader.GetString(reader.GetOrdinal("administratorPass"));
+                }
+            }
+            catch (MySql.Data.MySqlClient.MySqlException ex)
+            {
+                labelName.Text = "Your email is not valid";
+            }
+        }
+        else
+        {
+            labelName.Text = "Are you the administrator?";
+        }
+        if (pass.Equals(textBoxPassword.Text))
+        {
+            labelName.Text = name;
+            Administrator myAdministrator = new Administrator(id, name, email, pass);
+            Session["myAdministrator"] = myAdministrator;
+
+        }
+        else
+        {
+            labelName.Text = "Invalid pass";
+        }
+
+        checkBoxAdmin.Checked = false;
+    }
 
     protected void ddLstBks_SelectedIndexChanged(object sender, EventArgs e)
     {
@@ -136,7 +248,28 @@ public partial class MasterPage : System.Web.UI.MasterPage
          Response.Redirect("BookPage.aspx");*/
     }
 
-    
+    protected void LinkButton1_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("RegisterNewCustomer.aspx");
+    }
+
+    protected void linkAdministrator_Click(object sender, EventArgs e)
+    {
+        Administrator actualAdminNew = new Administrator();
+
+        actualAdminNew = (Administrator)Session["myAdministrator"];
+
+        if (actualAdminNew == null)
+        {
+            name = "You are not logged in as administrator!";
+        }
+        else
+        {
+            Response.Redirect("AdminTools.aspx");
+            logBtn.Text = "Log out";
+        }
+
+    }
 
     protected void linkProfile_Click(object sender, EventArgs e)
     {
@@ -297,5 +430,11 @@ public partial class MasterPage : System.Web.UI.MasterPage
           conn.Close();*/
 
     }
-    
+
+
+
+    protected void LinkButton8_Click1(object sender, EventArgs e)
+    {
+        Response.Redirect("SetRate.aspx");
+    }
 }

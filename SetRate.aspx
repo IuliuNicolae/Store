@@ -7,27 +7,40 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolderLeft" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="contentBody" Runat="Server">
-    Choose operation:&nbsp;&nbsp;&nbsp;
+    &nbsp;<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The juge page:&nbsp;
     <br />
     <br />
-&nbsp;<asp:RadioButtonList ID="RadioButtonList1" runat="server" AutoPostBack="True" OnSelectedIndexChanged="RadioButtonList1_SelectedIndexChanged1">
-        <asp:ListItem  Selected="True">Comments</asp:ListItem>
-        <asp:ListItem>Rate</asp:ListItem>
-    </asp:RadioButtonList>
-    <asp:Label ID="Label6" runat="server" Text="Label"></asp:Label>
+&nbsp;&nbsp;&nbsp;
+    <asp:Label ID="errorLabel" runat="server"></asp:Label>
+    
+    &nbsp;
     <br />
-    List:
+&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    
+    <br />
+
 <br />
-    <asp:DropDownList ID="DropDownListRate" runat="server">
-    </asp:DropDownList>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <asp:Button ID="buttonRate" runat="server" Text="Set a rate" />
+    &nbsp;Movies&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Stars:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Comments:<br />
     <br />
-    <br />
-    <asp:DropDownList ID="DropDownListComments" runat="server">
+&nbsp;&nbsp;<asp:DropDownList ID="ddlMovies" runat="server">
     </asp:DropDownList>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <asp:Button ID="buttonComments" runat="server" Text="Set a comment" />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <asp:DropDownList ID="DropDownListRate" runat="server" >
+        <asp:ListItem Value="0">None</asp:ListItem>
+        <asp:ListItem>1</asp:ListItem>
+        <asp:ListItem>2</asp:ListItem>
+        <asp:ListItem>3</asp:ListItem>
+        <asp:ListItem>4</asp:ListItem>
+        <asp:ListItem>5</asp:ListItem>
+    </asp:DropDownList>
+    <asp:TextBox ID="TextBox1" runat="server" maxlength="1200"  TextMode="MultiLine" ></asp:TextBox>
+    <asp:Button ID="buttonComments" runat="server" Text="Done" OnClick="buttonComments_Click" style="margin-left: 37px" />
+    <br />
+&nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="ContentPlaceHolderRight" Runat="Server">
 </asp:Content>

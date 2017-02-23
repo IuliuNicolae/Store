@@ -1,9 +1,6 @@
 ﻿
 <%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="BookPage.aspx.cs" Inherits="BookPage" %>
 
-
-        
-
 <asp:Content ID="Content1" ContentPlaceHolderID="title" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="head" Runat="Server">

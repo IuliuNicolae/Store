@@ -62,20 +62,20 @@ public partial class BookPage : System.Web.UI.Page
         if (words.Length == 0)
         {
 
-            querry = "Select * from movies";
+            querry = "Select id,title,category,artists,price,quantity from movies";
 
         }
         else if (words.Length == 1)
         {
             
-                querry = "SELECT * FROM movies WHERE (title LIKE'%" + words[0] + "%') OR (artists LIKE '%" + words[0] + "%') ";
+                querry = "SELECT id,title,category,artists,price,quantity FROM movies WHERE (title LIKE'%" + words[0] + "%') OR (artists LIKE '%" + words[0] + "%') ";
                 System.Diagnostics.Debug.WriteLine("SomeText3 " + querry);
                 System.Diagnostics.Debug.WriteLine("SomeText4 " + words[0]);
             
         }
         else if (words.Length == 2)
         {
-            querry = "SELECT * FROM books WHERE(title LIKE '%" + words[0] + "%') OR(title LIKE '%" + words[1] + "%') OR (artists LIKE '%" + words[0] + "%') OR" +
+            querry = "SELECT id,title,category,artists,price,quantity FROM books WHERE(title LIKE '%" + words[0] + "%') OR(title LIKE '%" + words[1] + "%') OR (artists LIKE '%" + words[0] + "%') OR" +
      "(artists LIKE '%" + words[1] + "%')  ORDER BY((CASE WHEN  title LIKE '%" + words[0] + "' THEN 1 ELSE 0 END )+(CASE WHEN title LIKE '%" + words[1] + "%' THEN 1 ELSE 0  END )+" +
 "(CASE WHEN artists LIKE '%" + words[0] + "%' THEN 1 ELSE 0 END )+" +
 "+(CASE WHEN artists LIKE '%" + words[1] + "%' THEN 1 ELSE 0 END ))  ASC";
@@ -90,7 +90,7 @@ public partial class BookPage : System.Web.UI.Page
     protected void Button10_Click(object sender, EventArgs e)
     {
         String search = textBoxSearch.Text;
-        String advancedQuerry = "select * from movies where title like '%" + search + "%' or artists like '%" + search + "%'";
+        String advancedQuerry = "select id,title,category,artists,price,quantity from movies where title like '%" + search + "%' or artists like '%" + search + "%'";
         string qSup1 = "";
         string qSup2 = "";
         string qSup3 = "";
@@ -116,7 +116,7 @@ public partial class BookPage : System.Web.UI.Page
         int size = ht.Count;
         if (size == 4)
         {
-            advancedQuerry = "select * from movies where (title like '%" + search + "%' or artists like '%" + search + "%') and category='Romance' or category='Thriller'or category='Science'or category ='Children'";
+            advancedQuerry = "select id,title,category,artists,price,quantity from movies where (title like '%" + search + "%' or artists like '%" + search + "%') and category='Romance' or category='Thriller'or category='Science'or category ='Children'";
         }
         else if (size == 0)
         {
@@ -131,7 +131,7 @@ public partial class BookPage : System.Web.UI.Page
                     qSup1 = (string)ht[i];
                 }
             }
-            advancedQuerry = "select * from movies where (title like '%" + search + "%' or artists like '%" + search + "%') and category='" + qSup1 + "'";
+            advancedQuerry = "select id,title,category,artists,price,quantity from movies where (title like '%" + search + "%' or artists like '%" + search + "%') and category='" + qSup1 + "'";
         }
         else if (size == 2)
         {
@@ -155,7 +155,7 @@ public partial class BookPage : System.Web.UI.Page
             }
 
 
-            advancedQuerry = "select * from movies where (title like '%" + search + "%' or artists like '%" + search + "%') and category='" + qSup1 + "' or category ='" + qSup2 + "'";
+            advancedQuerry = "select id,title,category,artists,price,quantity from movies where (title like '%" + search + "%' or artists like '%" + search + "%') and category='" + qSup1 + "' or category ='" + qSup2 + "'";
         }
         else if (size == 3)
         {
@@ -192,7 +192,7 @@ public partial class BookPage : System.Web.UI.Page
 
 
 
-            advancedQuerry = "select * from movies where (title like '%" + search + "%' or authorName like '%" + search + "%') and category='" + qSup1 + "' or category ='" + qSup2 + "' or category ='"+qSup3+"'";
+            advancedQuerry = "select id,title,category,artists,price,quantity from movies where (title like '%" + search + "%' or authorName like '%" + search + "%') and category='" + qSup1 + "' or category ='" + qSup2 + "' or category ='"+qSup3+"'";
         }
         BindData(advancedQuerry);
 
