@@ -85,7 +85,7 @@
             document.getElementById('<%= textBoxStreet.ClientID %>').value="";
             document.getElementById('<%= textBoxPhone.ClientID %>').value = "";
             document.getElementById('<%= textBoxPass2.ClientID %>').value = "";
-            
+            window.location.replace("Default.aspx");
 
             
         }
