@@ -65,7 +65,19 @@
                  <asp:ContentPlaceHolder ID="ContentPlaceHolderLeft" runat="server">
                 </asp:ContentPlaceHolder>
                     <br />
-&nbsp;<asp:LinkButton ID="linkHome" runat="server" OnClick="linkHome_Click">Home</asp:LinkButton>
+&nbsp;<a id="myLink" title="Home"
+ href="#" onclick="home();return false;">Home</a>
+                    <script type="text/javascript">
+                        function home() {
+                            var r = confirm("Are you sure? This will delete all previous shops!!!");
+                            if (r ==true) {
+                             window.location.replace("Default.aspx");
+                            } else {
+                                window.location.replace("CheckOut.aspx");
+                            }
+
+                        }
+                    </script>
                     <br />
                     <asp:LinkButton ID="linkBooks" runat="server" OnClick="linkBooks_Click">All Books</asp:LinkButton>
                     <br />

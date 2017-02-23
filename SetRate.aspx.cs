@@ -25,8 +25,10 @@ public partial class SetRate : System.Web.UI.Page
         actualCustomer = new Customers();
 
         actualCustomer = (Customers)Session["myCustomer"];
+        System.Diagnostics.Debug.WriteLine("Rateeeeeeeeeeee=" + actualCustomer.Email);
         if (!IsPostBack)
         {
+
             String connString = System.Configuration.ConfigurationManager.ConnectionStrings["WebbAppConnString"].ToString();
             conn = new MySql.Data.MySqlClient.MySqlConnection(connString);
             conn.Open();

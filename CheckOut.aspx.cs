@@ -31,6 +31,7 @@ public partial class CheckOut : System.Web.UI.Page
             showContent.DataBind();
             labelPrice.Text = getPrice(movies);
         }
+        Session["myMovies"] = movies;
     }
 
 
@@ -178,19 +179,24 @@ public partial class CheckOut : System.Web.UI.Page
 
     protected void insertNewRateRow(int idM, string email)
     {
-        String connString = System.Configuration.ConfigurationManager.ConnectionStrings["WebbAppConnString"].ToString();
-        conn = new MySql.Data.MySqlClient.MySqlConnection(connString);
-        conn.Open();
-        queryStr = "";
+        try
+        {
+            String connString = System.Configuration.ConfigurationManager.ConnectionStrings["WebbAppConnString"].ToString();
+            conn = new MySql.Data.MySqlClient.MySqlConnection(connString);
+            conn.Open();
+            queryStr = "";
 
 
-        queryStr = "insert into comments(movies_id, user_email,betyg, comment, isSetBetyg) values('"+idM+"','"+email+"' ,'"+0+"','NONE',false)";
+            queryStr = "insert into comments(movies_id, user_email,betyg, comment, isSetBetyg) values('" + idM + "','" + email + "' ,'" + 0 + "','NONE',false)";
 
-        cmd = new MySql.Data.MySqlClient.MySqlCommand(queryStr, conn);
+            cmd = new MySql.Data.MySqlClient.MySqlCommand(queryStr, conn);
 
-        cmd.ExecuteReader();
-        conn.Close();
-
+            cmd.ExecuteReader();
+            conn.Close();
+        }
+        catch {
+            System.Diagnostics.Debug.WriteLine("You allready bought this movie!!");
+        }
         
     }
 

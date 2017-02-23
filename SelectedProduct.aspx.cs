@@ -30,6 +30,7 @@ public partial class SelectedProduct : System.Web.UI.Page
   
     protected void Page_Load(object sender, EventArgs e)
     {
+        myMovies = new List<Movies>();
         rates = 0;
         allComments = new List<string>();
         id= (string)Session["ID"];
@@ -92,6 +93,8 @@ public partial class SelectedProduct : System.Web.UI.Page
             }
             System.Diagnostics.Debug.Write("Rate: " + rates + " Count: " + count + " MyRates: " + myRate);
         }
+
+       
     }
 
 
@@ -151,6 +154,7 @@ public partial class SelectedProduct : System.Web.UI.Page
 
     protected void btnBack_Click(object sender, EventArgs e)
     {
+        
         Response.Redirect("BookPage.aspx");
     }
 
@@ -172,7 +176,7 @@ public partial class SelectedProduct : System.Web.UI.Page
         {
             Response.Redirect("Error.aspx");
         }
-
+       
     }
 
 

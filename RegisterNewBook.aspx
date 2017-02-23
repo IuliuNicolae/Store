@@ -34,7 +34,7 @@
         Category:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;<asp:DropDownList ID="ddlCategory" runat="server" Height="16px" OnSelectedIndexChanged="DropDownList2_SelectedIndexChanged" style="margin-left: 0px" Width="124px">
             <asp:ListItem Selected="True">None</asp:ListItem>
-            <asp:ListItem Value="1">Thriller</asp:ListItem>
+            <asp:ListItem>Thriller</asp:ListItem>
             <asp:ListItem>Romance</asp:ListItem>
             <asp:ListItem>Children</asp:ListItem>
             <asp:ListItem>Science</asp:ListItem>

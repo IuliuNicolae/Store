@@ -38,6 +38,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
             
 
             actualCustomer = (Customers)Session["myCustomer"];
+            actualAdmin = (Administrator)Session["myAdministrator"];
             string name = "";
             if (actualCustomer == null && actualAdmin == null)
             {
@@ -159,7 +160,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
 
                 }
                 else if (loginpass.Equals(pass) && type.Equals("admin")) {
-                    System.Diagnostics.Debug.Write("ADDDDDDDDDDDDDDDDDDDDMMMMMMMMMMMMMMMIIIIIIIIIIIIIIIIIINNNNNNNNNNNNNNN");
+                 
                     Administrator myAdmin = new Administrator( firstName, email, loginpass);
                     Session["myAdministrator"] = myAdmin;
                     labelName.Text ="Admin "+ myAdmin.Name;
@@ -251,6 +252,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
 
     protected void linkHome_Click(object sender, EventArgs e)
     {
+      
         Response.Redirect("Default.aspx");
     }
 
@@ -338,7 +340,8 @@ public partial class MasterPage : System.Web.UI.MasterPage
 
     protected void LinkButton8_Click(object sender, EventArgs e)
     {
-        if(actualCustomer != null) { 
+        actualCustomer = (Customers)Session["myCustomer"];
+        if (actualCustomer != null) { 
         Response.Redirect("CheckOut.aspx");
     }
 }
@@ -395,6 +398,8 @@ public partial class MasterPage : System.Web.UI.MasterPage
 
     protected void LinkButton8_Click1(object sender, EventArgs e)
     {
+        actualCustomer = (Customers)Session["myCustomer"];
+        System.Diagnostics.Debug.WriteLine("Click på rate" + actualCustomer.FirstName);
         if (actualCustomer != null)
         {
             Response.Redirect("SetRate.aspx");

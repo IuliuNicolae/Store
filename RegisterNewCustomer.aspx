@@ -56,7 +56,7 @@
         </p>
     <asp:ValidationSummary ID="ValidationSummary1" runat="server" />
     <p>
-        &nbsp;&nbsp;<input type="button" id="Button10"  value="Registration" onclick="insert();"  />
+        &nbsp;&nbsp;<input type="button" id="Button10"  value="Registration" onclick="insert()"  />
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     </p>
 
