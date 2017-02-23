@@ -305,8 +305,8 @@ public partial class MasterPage : System.Web.UI.MasterPage
 
     protected void linkBooks_Click(object sender, EventArgs e)
     {
-        /*  Session["searchQuerry"] ="";
-          Response.Redirect("BookPage.aspx");*/
+        Session["searchQuerry"] ="all";
+          Response.Redirect("BookPage.aspx");
     }
 
     protected void LinkButton7_Click(object sender, EventArgs e)
@@ -316,25 +316,25 @@ public partial class MasterPage : System.Web.UI.MasterPage
 
     protected void LinkButton3_Click(object sender, EventArgs e)
     {
-        Session["searchQuerry"] = "£science£";
+        Session["searchQuerry"] = "science";
         Response.Redirect("BookPage.aspx");
     }
 
     protected void LinkButton4_Click(object sender, EventArgs e)
     {
-        Session["searchQuerry"] = "£romance£";
+        Session["searchQuerry"] = "romance";
         Response.Redirect("BookPage.aspx");
     }
 
     protected void LinkButton5_Click(object sender, EventArgs e)
     {
-        Session["searchQuerry"] = "£thriller£";
+        Session["searchQuerry"] = "thriller";
         Response.Redirect("BookPage.aspx");
     }
 
     protected void LinkButton6_Click(object sender, EventArgs e)
     {
-        Session["searchQuerry"] = "£children£";
+        Session["searchQuerry"] = "children";
         Response.Redirect("BookPage.aspx");
     }
 

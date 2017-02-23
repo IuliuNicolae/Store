@@ -11,11 +11,13 @@ public partial class BookPage : System.Web.UI.Page
     String queryStr;
     protected void Page_Load(object sender, EventArgs e)
     {
+        
          queryStr = (String)Session["searchQuerry"];
         
         if (!IsPostBack)
          {
-             getData(this.queryStr);
+            System.Diagnostics.Debug.WriteLine("!IsPostBack");
+            getData(this.queryStr);
          }
        
 
@@ -54,33 +56,43 @@ public partial class BookPage : System.Web.UI.Page
     {
         string querry = "";
         string pattern = ",";
-       
-        System.Diagnostics.Debug.WriteLine("String" +myString);
-        String[] words = Regex.Split(myString, pattern);
-        System.Diagnostics.Debug.WriteLine("Lenght" + words.Length);
-       // string[] words =(string) myString.split(',');
-        if (words.Length == 0)
+
+
+
+        if (queryStr == "all")
         {
-
-            querry = "Select id,title,category,artists,price,quantity from movies";
-
+            System.Diagnostics.Debug.WriteLine("Search for all");
+            querry = "select * from movies";
         }
-        else if (words.Length == 1)
+        else
         {
+            querry = "select * from movies where category = '"+queryStr+"'";
+        }
+//        System.Diagnostics.Debug.WriteLine("String" +myString);
+//        String[] words = Regex.Split(myString, pattern);
+//        System.Diagnostics.Debug.WriteLine("Lenght" + words.Length);
+//        if (words.Length == 0)
+//        {
+
+//            querry = "Select id,title,category,artists,price,quantity from movies";
+
+//        }
+//        else if (words.Length == 1)
+//        {
             
-                querry = "SELECT id,title,category,artists,price,quantity FROM movies WHERE (title LIKE'%" + words[0] + "%') OR (artists LIKE '%" + words[0] + "%') ";
-                System.Diagnostics.Debug.WriteLine("SomeText3 " + querry);
-                System.Diagnostics.Debug.WriteLine("SomeText4 " + words[0]);
+//                querry = "SELECT id,title,category,artists,price,quantity FROM movies WHERE (title LIKE'%" + words[0] + "%') OR (artists LIKE '%" + words[0] + "%') ";
+//                System.Diagnostics.Debug.WriteLine("SomeText3 " + querry);
+//                System.Diagnostics.Debug.WriteLine("SomeText4 " + words[0]);
             
-        }
-        else if (words.Length == 2)
-        {
-            querry = "SELECT id,title,category,artists,price,quantity FROM books WHERE(title LIKE '%" + words[0] + "%') OR(title LIKE '%" + words[1] + "%') OR (artists LIKE '%" + words[0] + "%') OR" +
-     "(artists LIKE '%" + words[1] + "%')  ORDER BY((CASE WHEN  title LIKE '%" + words[0] + "' THEN 1 ELSE 0 END )+(CASE WHEN title LIKE '%" + words[1] + "%' THEN 1 ELSE 0  END )+" +
-"(CASE WHEN artists LIKE '%" + words[0] + "%' THEN 1 ELSE 0 END )+" +
-"+(CASE WHEN artists LIKE '%" + words[1] + "%' THEN 1 ELSE 0 END ))  ASC";
+//        }
+//        else if (words.Length == 2)
+//        {
+//            querry = "SELECT id,title,category,artists,price,quantity FROM movies WHERE(title LIKE '%" + words[0] + "%') OR(title LIKE '%" + words[1] + "%') OR (artists LIKE '%" + words[0] + "%') OR" +
+//     "(artists LIKE '%" + words[1] + "%')  ORDER BY((CASE WHEN  title LIKE '%" + words[0] + "' THEN 1 ELSE 0 END )+(CASE WHEN title LIKE '%" + words[1] + "%' THEN 1 ELSE 0  END )+" +
+//"(CASE WHEN artists LIKE '%" + words[0] + "%' THEN 1 ELSE 0 END )+" +
+//"+(CASE WHEN artists LIKE '%" + words[1] + "%' THEN 1 ELSE 0 END ))  ASC";
 
-        }
+//        }
 
 
         BindData(querry);
