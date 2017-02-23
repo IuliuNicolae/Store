@@ -82,12 +82,15 @@ public partial class SelectedProduct : System.Web.UI.Page
             
         }
         conn.Close();
-        double myRate = rates / (count-1);
-        labelRate.Text = myRate+"";
-        for (int i = 0; i < allComments.Count; i++) {
-            textBoxComments.Text+= allComments[i].Trim() + Environment.NewLine;
+        if (rates > 0) {
+            double myRate = rates / (count - 1);
+            labelRate.Text = myRate + "";
+            for (int i = 0; i < allComments.Count; i++)
+            {
+                textBoxComments.Text += allComments[i].Trim() + Environment.NewLine;
+            }
+            System.Diagnostics.Debug.Write("Rate: " + rates + " Count: " + count + " MyRates: " + myRate);
         }
-        System.Diagnostics.Debug.Write("Rate: " + rates + " Count: " + count + " MyRates: " + myRate);
     }
 
 
