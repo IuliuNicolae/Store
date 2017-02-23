@@ -70,7 +70,6 @@
             var email = document.getElementById('<%= textBoxEmail.ClientID %>').value;
             var adress = document.getElementById('<%= textBoxStreet.ClientID %>').value;
             var phone = document.getElementById('<%= textBoxPhone.ClientID %>').value;
-            alert(fName);
           
            // xmlhttp.open("GET", "insertUser.aspx?fnm=" + fName + "&lnm=" + lName + "&pass=" + pass + "&em=" + email + "&adr=" + adress + "&ph=" + phone, false);
           
@@ -85,7 +84,7 @@
             document.getElementById('<%= textBoxStreet.ClientID %>').value="";
             document.getElementById('<%= textBoxPhone.ClientID %>').value = "";
             document.getElementById('<%= textBoxPass2.ClientID %>').value = "";
-            alert("Succes");
+            window.location.replace("Default.aspx");
 
             
         }

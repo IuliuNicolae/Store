@@ -35,5 +35,7 @@ public partial class insertUser : System.Web.UI.Page
         cmd = new MySql.Data.MySqlClient.MySqlCommand(queryStr, conn);
         cmd.ExecuteReader();
         conn.Close();
+
+
     }
 }

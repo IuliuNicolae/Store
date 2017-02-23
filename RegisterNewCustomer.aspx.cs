@@ -49,20 +49,12 @@ public partial class RegisterNewCustomer : System.Web.UI.Page
                 cmd.ExecuteReader();
                 conn.Close();
 
-
+        Response.Redirect("Default.aspx");
 
         
-        clearBoxes();
+       
       
     }
-    private void clearBoxes()
-    {
-        textBoxFName.Text = " ";
-        textBoxPass.Text = " ";
-        textBoxEmail.Text = " ";
-        textBoxPass2.Text = " ";
-        textBoxStreet.Text = " ";
-        textBoxPhone.Text = " ";
-    }
+    
     
 }

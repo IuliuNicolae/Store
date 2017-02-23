@@ -193,5 +193,10 @@ public partial class CheckOut : System.Web.UI.Page
 
         
     }
-    
+
+
+    protected void payNow_Click(object sender, EventArgs e)
+    {
+
+    }
 }
