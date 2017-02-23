@@ -8,29 +8,59 @@ using System.Web;
 /// </summary>
 public class Cart
 {
+    string customerId;
+    List<Movies> titles;
+    string price;
 
-    List<Movies> movielist = new List<Movies>();
-
-   
-    public List<Movies> movielistclass
+    public string CustomerId
     {
         get
         {
-            return movielist;
+            return customerId;
         }
 
         set
         {
-            movielist = value;
+            customerId = value;
         }
     }
-    public void addToCart(Movies m)
+
+    public List<Movies> Titles
     {
-        movielist.Add(m);
+        get
+        {
+            return titles;
+        }
+
+        set
+        {
+            titles = value;
+        }
     }
+    public void addToCart(Movies mov) {
+        titles.Add(mov);
+    }
+    public void removeFromCart(Movies mov)
+    {
+        titles.Remove(mov);
+    }
+
+    public string Price
+    {
+        get
+        {
+            return price;
+        }
+
+        set
+        {
+            price = value;
+        }
+    }
+
     public Cart()
     {
-        
+        this.titles = new List<Movies>();
     }
     
 }

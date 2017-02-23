@@ -7,14 +7,12 @@ using System.Web.UI.WebControls;
 
 public partial class _Default : System.Web.UI.Page
 {
-    int numberOfItems = 0;
+    
     protected void Page_Load(object sender, EventArgs e)
     {
-        List<Movies> myMovies = new List<Movies>();
-        Session["myMovies"] = myMovies;
-        Session["nbrOfItems"] = numberOfItems;
 
         addmoviestotable();
+
 
     }
 
@@ -51,28 +49,36 @@ public partial class _Default : System.Web.UI.Page
             Movies mov = new Movies(id,title,cat,artist,price,quant,imdb,pic);
             movielist.Add(mov);
         }
-        System.Diagnostics.Debug.WriteLine("movielist count : "+movielist.Count);
-        if (movielist.Count != 0) { 
+        
+        
+        Image img = new Image();
         for (int i = 0;i < 3 ;i++)
         {
-            Random ran = new Random();
-            int number = ran.Next(0,movielist.Count);
-            title = movielist[number].Title;
-            cat = movielist[number].Category;
-            artist = movielist[number].Artists;
-            price = movielist[number].Price;
-            quant = movielist[number].Quantity;
-            imdb = movielist[number].ImdbLink;
-            pic = movielist[number].Picture;
+            TableRow tr = new TableRow();
+            movietable.Rows.Add(tr);
+            for ( int j = 0; j < 3; j++) {
+                TableCell tc = new TableCell();
+                tr.Cells.Add(tc);
+                Random ran = new Random();
+                int number = ran.Next(0,movielist.Count);
+                System.Diagnostics.Debug.WriteLine("new random: "+ number);
+                title = movielist[number].Title;
+                cat = movielist[number].Category;
+                artist = movielist[number].Artists;
+                price = movielist[number].Price;
+                quant = movielist[number].Quantity;
+                imdb = movielist[number].ImdbLink;
+                pic = movielist[number].Picture;
+                img.ImageUrl = pic;
+                tc.Controls.Add(img);
+                
+                System.Diagnostics.Debug.WriteLine("added cell to row");
+            }
+            
+            System.Diagnostics.Debug.WriteLine("added row to table");
 
-            Image1.ImageUrl = pic;
-
-           
         }
-        }else
-        {
-
-        }
+       
     }
     
         

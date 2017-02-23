@@ -8,10 +8,10 @@
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="contentBody" Runat="Server">
 
-    <asp:Image ID="Image1" runat="server" />
-    <asp:Image ID="Image2" runat="server" />
-    <asp:Image ID="Image3" runat="server" />
+   <asp:Table runat="server" ID="movietable" Width="100%">
 
+   </asp:Table>
+    
 
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="ContentPlaceHolderRight" Runat="Server">
