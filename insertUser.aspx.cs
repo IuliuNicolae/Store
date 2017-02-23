@@ -33,7 +33,7 @@ public partial class insertUser : System.Web.UI.Page
         conn.Open();
         queryStr = "";
      
-        queryStr = "IF NOT EXISTS(Select * from user where email ='"+email+"') Begin INSERT INTO user (email,firstName,lastName,password,address,phone,type ) values ('" + email + "','" + firstName + "','" + lastName + "','" + pass + "','" + adress + "','" + phone + "','user') END";
+        queryStr = " INSERT INTO user (email,firstName,lastName,password,address,phone,type ) values ('" + email + "','" + firstName + "','" + lastName + "','" + pass + "','" + adress + "','" + phone + "','user')";
         cmd = new MySql.Data.MySqlClient.MySqlCommand(queryStr, conn);
         cmd.ExecuteReader();
         conn.Close();

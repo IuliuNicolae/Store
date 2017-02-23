@@ -9,12 +9,14 @@ public partial class OrdersLogg : System.Web.UI.Page
 {
  
     MySql.Data.MySqlClient.MySqlConnection conn;
+    Customers c;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
         {
+            c = (Customers)Session["myCustomer"];
             BindData();
-                }
+               }
 
     }
     protected void BindData()
@@ -27,7 +29,7 @@ public partial class OrdersLogg : System.Web.UI.Page
         {
 
 
-            MySqlDataAdapter adp = new MySqlDataAdapter("select * from orders", cn);
+            MySqlDataAdapter adp = new MySqlDataAdapter("select * from bookings where user_email = '"+c.Email+"'", cn);
             adp.Fill(dt);
             if (dt.Rows.Count > 0)
             {
