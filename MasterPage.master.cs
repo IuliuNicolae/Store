@@ -101,14 +101,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
 
     protected void Button8_Click1(object sender, EventArgs e)
     {
-        if (checkBoxAdmin.Checked)
-        {
-            Session.Clear();
-            logInAmin();
-            logBtn.Text = "Log out";
-        }
-        else
-        {
+        
             if (logBtn.Text.Equals("Log in"))
             {
                 logIn();
@@ -119,7 +112,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
                 logOut();
 
             }
-        }
+        
     }
     protected void logOut()
     {
@@ -189,47 +182,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
 
 
     }
-    protected void logInAmin()
-    {
-        email = textBoxEmail.Text;
-        if (email != " ")
-        {
-            try
-            {
-                dbConnection dbc = dbConnection.Instance();
-                queryStr = "SELECT * from  administrator where administratorEmail= '" + email + "'";
-
-                reader = dbc.Select(queryStr);
-                while (reader.Read())
-                {
-                    id = reader.GetInt32(reader.GetOrdinal("administratorId")) + "";
-                    name = reader.GetString(reader.GetOrdinal("administratorName"));
-                    pass = reader.GetString(reader.GetOrdinal("administratorPass"));
-                }
-            }
-            catch (MySql.Data.MySqlClient.MySqlException ex)
-            {
-                labelName.Text = "Your email is not valid";
-            }
-        }
-        else
-        {
-            labelName.Text = "Are you the administrator?";
-        }
-        if (pass.Equals(textBoxPassword.Text))
-        {
-            labelName.Text = name;
-            Administrator myAdministrator = new Administrator(id, name, email, pass);
-            Session["myAdministrator"] = myAdministrator;
-
-        }
-        else
-        {
-            labelName.Text = "Invalid pass";
-        }
-
-        checkBoxAdmin.Checked = false;
-    }
+   
 
     protected void ddLstBks_SelectedIndexChanged(object sender, EventArgs e)
     {
@@ -443,4 +396,6 @@ public partial class MasterPage : System.Web.UI.MasterPage
         }
         
     }
+
+    
 }
