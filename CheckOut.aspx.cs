@@ -13,7 +13,7 @@ public partial class CheckOut : System.Web.UI.Page
 
 
     Customers actualCustomer;
-    List<Movies>movies;
+    List<Movies> movies;
     
     private double totalPrice;
     protected void Page_Load(object sender, EventArgs e)
@@ -21,9 +21,10 @@ public partial class CheckOut : System.Web.UI.Page
 
         actualCustomer = new Customers();
         actualCustomer = (Customers)Session["myCustomer"];
+        movies = new List<Movies>();
         movies = (List<Movies>)Session["myMovies"];
        
-        if (movies.Count == 0)
+        if (movies.Count <= 0)
         {
            labelPrice.Text = "The cart is empty or you are not logged in!!!!";
         }

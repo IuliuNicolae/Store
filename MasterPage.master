@@ -10,6 +10,7 @@
     </title>
     <link href="Styles/StyleSheet.css" rel="stylesheet" />
     <asp:ContentPlaceHolder ID="head" runat="server">
+     
     </asp:ContentPlaceHolder>
 </head>
 <body>
@@ -20,12 +21,12 @@
            
             <div class="menu">
                
-                <asp:Image ID="Image1" runat="server" Height="101px" Width="119px"
-                 AlternateText="Image text" ImageAlign="left" ImageUrl="Styles/oldBook.gif"/>
+                
                
              &nbsp;
                 
-                
+                   <asp:Image ID="Image1" runat="server" Height="101px" Width="119px"
+                 AlternateText="Image text" ImageAlign="left" ImageUrl="Styles/oldBook.gif"/>
                 <asp:Label ID="Label1" runat="server" Text="Old books-old friends"></asp:Label>
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
              
@@ -106,7 +107,14 @@
                  <div class="sidebarRight">
                  <asp:ContentPlaceHolder ID="ContentPlaceHolderRight" runat="server">
                 </asp:ContentPlaceHolder>
-                     <br />
+                     <div>
+                         <p>Shopping Cart
+                         <asp:table ID="cartT" runat="server" Height="30%">
+
+                         </asp:table>
+
+
+                     </div>
 &nbsp;<br />
 &nbsp;<asp:AdRotator ID="AdRotator1"  KeywordFilter="Japan" runat="server" DataSourceID="XmlDataSource1" />
                      <asp:XmlDataSource ID="XmlDataSource1" runat="server"  OnTransforming="XmlDataSource1_Transforming" DataFile="~/Sample1.ads"></asp:XmlDataSource>
