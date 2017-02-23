@@ -95,7 +95,7 @@ public partial class CheckOut : System.Web.UI.Page
         conn = new MySql.Data.MySqlClient.MySqlConnection(connString);
         conn.Open();
         queryStr = "";
-        queryStr = "insert into bookings (totalPrice,user_email) values ('" + price + "','" + emailCustomer + "');SELECT LAST_INSERT_ID();";
+        queryStr = "insert into bookings (totalPrice,bookingdate,user_email) values ('" + price + "',now(),'" + emailCustomer + "');SELECT LAST_INSERT_ID();";
 
         cmd = new MySql.Data.MySqlClient.MySqlCommand(queryStr, conn);
         reader=cmd.ExecuteReader();

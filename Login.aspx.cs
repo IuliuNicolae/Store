@@ -8,23 +8,35 @@ using System.Web.UI.WebControls;
 
 public partial class Login : System.Web.UI.Page
 {
+    string email = "";
+    string pass = "";
+    string queryStr = "";
+    MySqlDataReader reader;
     protected void Page_Load(object sender, EventArgs e)
     {
 
     }
-   private void checkuser() {
-        string email = emailTB.Text;
-        string pass = passTB.Text;
+
+    protected void login_Click(object sender, EventArgs e)
+    {
+        logIn();
+    }
+
+    protected void createUser_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("RegisterNewCustomer.aspx");
+    }
+    protected void logIn()
+    {
+        email = emailTB.Text;
+        pass = passTB.Text;
         string loginpass = "";
-        string loginemail = "";
         string firstName = "";
         string lastName = "";
         string adress = "";
         string phone = "";
         string type = "";
-        string queryStr = "";
-        MySqlDataReader reader;
-        if (email != "")
+        if (email != " ")
         {
             try
             {
@@ -36,6 +48,7 @@ public partial class Login : System.Web.UI.Page
                 while (reader.Read())
                 {
                     System.Diagnostics.Debug.WriteLine("reads");
+
                     firstName = reader.GetString(reader.GetOrdinal("firstName"));
                     lastName = reader.GetString(reader.GetOrdinal("lastName"));
                     loginpass = reader.GetString(reader.GetOrdinal("password"));
@@ -45,32 +58,34 @@ public partial class Login : System.Web.UI.Page
 
                 }
                 dbc.close();
-                if (loginpass.Equals(pass))
+                if (loginpass.Equals(pass) && type.Equals("user"))
                 {
 
-                    Customers myCustomer = new Customers(firstName, lastName, email, loginpass, adress, phone);
+                    Customers myCustomer = new Customers(firstName, lastName, email, loginpass, adress, phone,type);
                     Session["myCustomer"] = myCustomer;
                     Response.Redirect("Default.aspx");
-
                 }
                 else
                 {
-                    Response.Redirect("Default.aspx");
+
+                    errorL.Text = "Invalid email or password";
+                    ;
 
                 }
             }
             catch (MySql.Data.MySqlClient.MySqlException ex)
             {
-                Response.Redirect("Default.aspx");
+                
+                errorL.Text = "Your email is not valid";
             }
 
         }
-        
-    }
+        else
+        {
+            errorL.Text = "You must enter your email";
+        }
 
 
-    protected void loginB_Click(object sender, EventArgs e)
-    {
-        checkuser();
+
     }
 }
