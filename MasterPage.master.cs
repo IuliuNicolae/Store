@@ -297,16 +297,5 @@ public partial class MasterPage : System.Web.UI.MasterPage
           conn.Close();*/
 
     }
-    protected void bindItemsToCart()
-    {
-        Cart cart = (Cart)Session["myCart"];
-        foreach (Movies m in cart.movielistclass){
-            TableRow tr = new TableRow();
-            TableCell tc = new TableCell();
-            tc.Text = m.Title;
-            tr.Cells.Add(tc);
-            tc.Text = m.Price;
-            tr.Cells.Add(tc);
-            cartT.Rows.Add(tr);        }
-    }
+    
 }
