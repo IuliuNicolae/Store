@@ -184,7 +184,7 @@ public partial class CheckOut : System.Web.UI.Page
         queryStr = "";
 
 
-        queryStr = "insert into comments(movies_id, user_email, isSetBetyg) values("+idM+",'"+email+" ', false)";
+        queryStr = "insert into comments(movies_id, user_email,betyg, comment, isSetBetyg) values("+idM+",'"+email+" ,"+0+",'NONE', false)";
 
         cmd = new MySql.Data.MySqlClient.MySqlCommand(queryStr, conn);
 
