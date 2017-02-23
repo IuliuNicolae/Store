@@ -22,6 +22,9 @@
     <p>
         &nbsp;&nbsp;<asp:LinkButton ID="LinkButton8" runat="server" OnClick="LinkButton8_Click">View advertize situation</asp:LinkButton>
     </p>
+    <p>
+        <asp:LinkButton ID="LinkButton9" runat="server" OnClick="LinkButton9_Click">Statistiq</asp:LinkButton>
+    </p>
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="ContentPlaceHolderRight" Runat="Server">
 </asp:Content>

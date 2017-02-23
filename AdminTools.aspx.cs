@@ -28,4 +28,9 @@ public partial class AdminTools : System.Web.UI.Page
     {
         Response.Redirect("ViewAdData.aspx");
     }
+
+    protected void LinkButton9_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("Test.cshtml");
+    }
 }

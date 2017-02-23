@@ -18,10 +18,15 @@
         <asp:Label ID="lbEm" runat="server" Text="Label"></asp:Label>
     </p>
     <p>
-        Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:RequiredFieldValidator ID="RequiredFieldValidatorName" runat="server" ControlToValidate="textBoxName" Display="Dynamic" ErrorMessage="Name field could not be empty" ForeColor="Red" OnDataBinding="Button10_Click">*</asp:RequiredFieldValidator>
-        <asp:TextBox ID="textBoxName" runat="server" Width="124px"></asp:TextBox>
-        <asp:RegularExpressionValidator ID="RegularExpressionValidatorName" runat="server" ControlToValidate="textBoxName" Display="Dynamic" ErrorMessage="The name must contain only letters" ForeColor="Red" ValidationExpression="^[a-zA-Z''-'\s]{1,40}$" OnDataBinding="Button10_Click">*</asp:RegularExpressionValidator>
+        &nbsp;First Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <asp:RequiredFieldValidator ID="RequiredFieldValidatorName" runat="server" ControlToValidate="textBoxFirstName" Display="Dynamic" ErrorMessage="Name field could not be empty" ForeColor="Red" OnDataBinding="Button10_Click">*</asp:RequiredFieldValidator>
+        <asp:TextBox ID="textBoxFirstName" runat="server" Width="124px"></asp:TextBox>
+        <asp:RegularExpressionValidator ID="RegularExpressionValidatorName" runat="server" ControlToValidate="textBoxFirstName" Display="Dynamic" ErrorMessage="The name must contain only letters" ForeColor="Red" ValidationExpression="^[a-zA-Z''-'\s]{1,40}$" OnDataBinding="Button10_Click">*</asp:RegularExpressionValidator>
+    </p>
+    <p>
+        Last Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="textBoxLastName" ErrorMessage="RequiredFieldValidator" ForeColor="Red">*</asp:RequiredFieldValidator>
+&nbsp;<asp:TextBox ID="textBoxLastName" runat="server"></asp:TextBox>
+        <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ControlToValidate="textBoxLastName" ErrorMessage="RegularExpressionValidator" ForeColor="Red" ValidationExpression="^[a-zA-Z''-'\s]{1,40}$">*</asp:RegularExpressionValidator>
     </p>
     <p>
         Password:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -36,11 +41,11 @@
         <asp:CompareValidator ID="CompareValidatorPass2" runat="server" ControlToCompare="textBoxPass" ControlToValidate="textBoxPass2" Display="Dynamic" ErrorMessage="The pasword is not the same" ForeColor="Red" OnDataBinding="Button10_Click">*</asp:CompareValidator>
     </p>
     <p>
-        Street:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+        Street:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; 
         <asp:TextBox ID="textBoxStreet" runat="server"></asp:TextBox>
     </p>
     <p>
-        Phone:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        Phone:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
         <asp:TextBox ID="textBoxPhone" runat="server"></asp:TextBox>
         <asp:RegularExpressionValidator ID="RegularExpressionValidatorPhone" runat="server" ControlToValidate="textBoxPhone" Display="Dynamic" ErrorMessage="Phone error" ForeColor="Red" ValidationExpression="^[0-9]{1,10}$" OnDataBinding="Button10_Click">*</asp:RegularExpressionValidator>
     </p>

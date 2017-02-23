@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+    </head>
+    <body>
+        
+    </body>
+</html>
+@{
+
+    MySql.Data.MySqlClient.MySqlConnection conn;
+    MySql.Data.MySqlClient.MySqlCommand cmd;
+    MySql.Data.MySqlClient.MySqlDataReader reader;
+    string queryStr;
+    string category;
+    var countChildren=0;
+    var countRomance=0;
+    var countThriller=0;
+    var countScience=0;
+
+
+
+    String connString = System.Configuration.ConfigurationManager.ConnectionStrings["WebbAppConnString"].ToString();
+    conn = new MySql.Data.MySqlClient.MySqlConnection(connString);
+    conn.Open();
+    queryStr = "";
+    queryStr = " select category from movies, bookings, bookings_has_movies where movies.id = bookings_has_movies.movies_id and bookings.idBookings = bookings_has_movies.Bookings_id";
+    cmd = new MySql.Data.MySqlClient.MySqlCommand(queryStr, conn);
+    reader = cmd.ExecuteReader();
+    while (reader.Read())
+    {
+
+        category = reader.GetString(reader.GetOrdinal("category"));
+        System.Diagnostics.Debug.WriteLine(category);
+        switch (category)
+        {
+
+            case "Science":
+                countScience = countScience + 1;
+                break;
+
+            case "Children":
+                countChildren = countChildren + 1;
+                break;
+            case "Romance":
+                countRomance = countRomance + 1;
+                break; /* optional */
+
+            case "Thriller":
+                countThriller = countThriller + 1;
+                break;
+        }
+
+    }
+
+    conn.Close();
+ var myChart = new Chart(width: 600, height: 400)
+    .AddTitle("Employees")
+.AddSeries(chartType: "column",
+xValue: new[] { "Thriller", "Science", "Romance", "Children" },
+yValues: new[] { countThriller,countScience, countRomance, countChildren })
+.Write();
+}

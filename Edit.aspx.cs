@@ -44,7 +44,7 @@ public partial class Edit : System.Web.UI.Page
             {
 
                 lbEm.Text = actualAdminNew.Email;
-                textBoxName.Text = actualAdminNew.Name;
+                textBoxFirstName.Text = actualAdminNew.Name;
               
                 textBoxPass.Text = actualAdminNew.Pass;
               
@@ -57,10 +57,9 @@ public partial class Edit : System.Web.UI.Page
             {
                 lbEm.Text = actualCustomerNew.Email;
              
-                textBoxName.Text = actualCustomerNew.FirstName;
-              
-                textBoxPass.Text = actualCustomerNew.Pass;
-          
+                textBoxFirstName.Text = actualCustomerNew.FirstName;
+                textBoxLastName.Text = actualCustomerNew.LastName;
+                textBoxPass.Text = actualCustomerNew.Pass;  
                 textBoxPass2.Text = actualCustomerNew.Pass;
                 textBoxStreet.Text = actualCustomerNew.Adress;
             
@@ -85,15 +84,15 @@ public partial class Edit : System.Web.UI.Page
         if (user.Equals("customer"))
             {
             System.Diagnostics.Debug.WriteLine(actualCustomerNew.Email + "      userrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr   " + user);
-            queryStr = "update  customers set customerName='" + textBoxName.Text + "', customerPass='" + textBoxPass.Text + "', custommerStreet='" + textBoxStreet.Text + "', customerPhone='" + textBoxPhone.Text + "' where customerEmail='" + actualCustomerNew.Email + "'";
-                newCustomer = new Customers(actualCustomerNew.Email,textBoxName.Text,textBoxPass.Text,actualCustomerNew.Pass,textBoxStreet.Text,textBoxPhone.Text);
+            queryStr = "update  user set firstName='" + textBoxFirstName.Text +"',lastName='"+textBoxLastName.Text+ "', password='" + textBoxPass.Text + "', address='" + textBoxStreet.Text + "', phone='" + textBoxPhone.Text + "' where email='" + actualCustomerNew.Email + "'";
+                newCustomer = new Customers(actualCustomerNew.Email,textBoxFirstName.Text,textBoxPass.Text,actualCustomerNew.Pass,textBoxStreet.Text,textBoxPhone.Text);
                 Session["myCustomer"] = newCustomer;
                
             }
             else if (user.Equals("admin"))
             {
-                queryStr = "update administrator set administratorName='" + textBoxName.Text + "', administratorPass='" + textBoxPass.Text + "' where administratorEmail='" + actualAdminNew.Email + "'";
-               newAdministrator = new Administrator(textBoxName.Text,actualAdminNew.Email,textBoxPass.Text);
+                queryStr = "update administrator set administratorName='" + textBoxFirstName.Text + "', administratorPass='" + textBoxPass.Text + "' where administratorEmail='" + actualAdminNew.Email + "'";
+               newAdministrator = new Administrator(textBoxFirstName.Text,actualAdminNew.Email,textBoxPass.Text);
                 Session["myAdministrator"] = newAdministrator;
             }
            

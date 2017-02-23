@@ -75,7 +75,7 @@ public partial class BookPage : System.Web.UI.Page
         }
         else if (words.Length == 2)
         {
-            querry = "SELECT id,title,category,artists,price,quantity FROM books WHERE(title LIKE '%" + words[0] + "%') OR(title LIKE '%" + words[1] + "%') OR (artists LIKE '%" + words[0] + "%') OR" +
+            querry = "SELECT id,title,category,artists,price,quantity FROM movies WHERE(title LIKE '%" + words[0] + "%') OR(title LIKE '%" + words[1] + "%') OR (artists LIKE '%" + words[0] + "%') OR" +
      "(artists LIKE '%" + words[1] + "%')  ORDER BY((CASE WHEN  title LIKE '%" + words[0] + "' THEN 1 ELSE 0 END )+(CASE WHEN title LIKE '%" + words[1] + "%' THEN 1 ELSE 0  END )+" +
 "(CASE WHEN artists LIKE '%" + words[0] + "%' THEN 1 ELSE 0 END )+" +
 "+(CASE WHEN artists LIKE '%" + words[1] + "%' THEN 1 ELSE 0 END ))  ASC";
