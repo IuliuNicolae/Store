@@ -8,23 +8,12 @@ using System.Web;
 /// </summary>
 public class Administrator
 {
-    string id;
+  
     string name;
     string pass;
     string email;
 
-    public string Id
-    {
-        get
-        {
-            return id;
-        }
-
-        set
-        {
-            id = value;
-        }
-    }
+   
 
     public string Name
     {
@@ -69,9 +58,9 @@ public class Administrator
     {
         
     }
-    public Administrator(string id, string name, string email,string pass) {
+    public Administrator(string name, string email,string pass) {
 
-        this.id = id;
+        
         this.name = name;
         this.email = email;
         this.pass = pass;      

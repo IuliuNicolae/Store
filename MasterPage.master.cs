@@ -162,9 +162,9 @@ public partial class MasterPage : System.Web.UI.MasterPage
                 }
                 else if (loginpass.Equals(pass) && type.Equals("admin")) {
                     System.Diagnostics.Debug.Write("ADDDDDDDDDDDDDDDDDDDDMMMMMMMMMMMMMMMIIIIIIIIIIIIIIIIIINNNNNNNNNNNNNNN");
-                    Customers myCustomer = new Customers(firstName, lastName, email, loginpass, adress, phone);
-                    Session["myAdministrator"] = myCustomer;
-                    labelName.Text ="Admin "+ myCustomer.FirstName;
+                    Administrator myAdmin = new Administrator( firstName, email, loginpass);
+                    Session["myAdministrator"] = myAdmin;
+                    labelName.Text ="Admin "+ myAdmin.Name;
                 }
                 else
                 {

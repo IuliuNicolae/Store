@@ -93,7 +93,7 @@ public partial class Edit : System.Web.UI.Page
             else if (user.Equals("admin"))
             {
                 queryStr = "update administrator set administratorName='" + textBoxName.Text + "', administratorPass='" + textBoxPass.Text + "' where administratorEmail='" + actualAdminNew.Email + "'";
-               newAdministrator = new Administrator(actualAdminNew.Id,textBoxName.Text,actualAdminNew.Email,textBoxPass.Text);
+               newAdministrator = new Administrator(textBoxName.Text,actualAdminNew.Email,textBoxPass.Text);
                 Session["myAdministrator"] = newAdministrator;
             }
            
