@@ -27,7 +27,7 @@ public partial class OrdersLogg : System.Web.UI.Page
         {
 
 
-            MySqlDataAdapter adp = new MySqlDataAdapter("select * from orders", cn);
+            MySqlDataAdapter adp = new MySqlDataAdapter("select * from bookings", cn);
             adp.Fill(dt);
             if (dt.Rows.Count > 0)
             {
