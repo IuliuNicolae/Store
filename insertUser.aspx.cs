@@ -27,12 +27,13 @@ public partial class insertUser : System.Web.UI.Page
         adress = Request.QueryString["adr"].ToString();
         phone = Request.QueryString["phone"].ToString();
         System.Diagnostics.Debug.WriteLine("Begin+ "+email);
-
+        
         String connString = System.Configuration.ConfigurationManager.ConnectionStrings["WebbAppConnString"].ToString();
         conn = new MySql.Data.MySqlClient.MySqlConnection(connString);
         conn.Open();
         queryStr = "";
-        queryStr = "INSERT INTO user (email,firstName,lastName,password,address,phone,type ) values ('" + email + "','" + firstName + "','" + lastName + "','" + pass + "','" + adress + "','" + phone + "',+'user')";
+     
+        queryStr = "IF NOT EXISTS(Select * from user where email ='"+email+"') Begin INSERT INTO user (email,firstName,lastName,password,address,phone,type ) values ('" + email + "','" + firstName + "','" + lastName + "','" + pass + "','" + adress + "','" + phone + "','user') END";
         cmd = new MySql.Data.MySqlClient.MySqlCommand(queryStr, conn);
         cmd.ExecuteReader();
         conn.Close();
