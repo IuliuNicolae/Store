@@ -20,7 +20,7 @@ public partial class SetRate : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         title = "";
-        id = "";
+        
         allTitles = new List<Movies>();
         actualCustomer = new Customers();
 

@@ -75,6 +75,7 @@ public partial class SelectedProduct : System.Web.UI.Page
         int count = 1;
         while (reader.Read())
         {
+             
             comments = reader.GetString(reader.GetOrdinal("comment"));
             rates = rates+reader.GetInt32(reader.GetOrdinal("betyg"));
             allComments.Add(comments);

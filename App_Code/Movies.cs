@@ -18,7 +18,7 @@ public class Movies
     string picture;
   
 
-    public string Id
+    public String Id
     {
         get
         {
