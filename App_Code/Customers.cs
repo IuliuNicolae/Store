@@ -16,6 +16,7 @@ public class Customers
     string email;
     string adress;
     string phone;
+    string type;
     public Customers() {
     }
     public Customers(string firstName,string lastName,string email,string pass,string adress, string phone) {
@@ -25,6 +26,7 @@ public class Customers
         this.email = email;
         this.adress = adress;
         this.phone = phone;
+        
 
     }
     public string FirstName
@@ -102,6 +104,18 @@ public class Customers
         set
         {
             phone = value;
+        }
+    }
+    public string Type
+    {
+        get
+        {
+            return type;
+        }
+
+        set
+        {
+            type = value;
         }
     }
 }
