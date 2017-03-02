@@ -52,9 +52,9 @@ public class dbConnection
     public void insert(String sqlQuery)
     {
         connection();
-        MySqlCommand comm = new MySqlCommand(sqlQuery, conn);
-        
-
+        MySqlCommand cmd = new MySqlCommand(sqlQuery, conn);
+        cmd.ExecuteReader();
+        System.Diagnostics.Debug.WriteLine("Command: " + sqlQuery);
     }
 
     

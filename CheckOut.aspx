@@ -15,7 +15,6 @@
     <p>
         <asp:Button ID="Button10" runat="server" OnClick="Button10_Click" style="width: 46px" Text="Back" />
     &nbsp;&nbsp;
-        <asp:Button ID="buttonPay" runat="server" OnClick="buttonPay_Click" Text="Conform Payment" />
         <!--<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="POST"> -->
        
         

@@ -119,16 +119,7 @@ public partial class CheckOut : System.Web.UI.Page
 
     }
 
-    protected void buttonPay_Click(object sender, EventArgs e)
-    {
-        
-        
-        movies.Clear();
-
-        Session["myMovies"] = movies;
-        Response.Redirect("Default.aspx");
-
-    }
+   
 
 
 

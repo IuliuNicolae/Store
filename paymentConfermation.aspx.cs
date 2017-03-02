@@ -51,6 +51,7 @@ protected void toHome(object sender, EventArgs e)
         while (reader.Read())
         {
             lastID = reader.GetInt32(reader.GetOrdinal("LAST_INSERT_ID()"));
+            System.Diagnostics.Debug.WriteLine("got last index id " + lastID);
 
         }
         dbc.close();
@@ -58,18 +59,21 @@ protected void toHome(object sender, EventArgs e)
         
 
         System.Diagnostics.Debug.WriteLine("Last id: " + lastID);
+        System.Diagnostics.Debug.WriteLine("number in movies: " + movies.Count);
         for (int j = 0; j < movies.Count; j++)
         {
             insertMoviesIntoBooking(lastID, Convert.ToInt32(movies[j].Id));
+            System.Diagnostics.Debug.WriteLine("Last id: " + lastID);
             //insertNewRateRow(Convert.ToInt32(movies[j].Id), emailCustomer);
 
         }
     }
     protected void insertMoviesIntoBooking(int idB, int idM)
     {
-
+        System.Diagnostics.Debug.WriteLine("Added movieID: " + idB + " to bookingid: " + idM);
         dbConnection dbc = dbConnection.Instance();
         queryStr = "insert into bookings_has_movies (Bookings_id,movies_id) values (" + idB + " , " + idM + " )";
+        
 
         dbc.insert(queryStr);
         dbc.close();
