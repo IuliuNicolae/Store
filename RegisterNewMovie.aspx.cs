@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class RegisterNewBook : System.Web.UI.Page
+public partial class RegisterNewMovie : System.Web.UI.Page
 {
     MySql.Data.MySqlClient.MySqlConnection conn;
     MySql.Data.MySqlClient.MySqlCommand cmd;
@@ -13,12 +13,13 @@ public partial class RegisterNewBook : System.Web.UI.Page
     String queryStr;
    // int count = 0;
     String category = "XXX ";
+    
     protected void Page_Load(object sender, EventArgs e)
     {
     }
     protected void DropDownList2_SelectedIndexChanged(object sender, EventArgs e)
     {
-        category = ddlCategory.SelectedItem.Text;
+       // category = ddlCategory.SelectedItem.Text;
         System.Diagnostics.Debug.WriteLine("SomeText " + category);
     }
     protected void Button10_Click(object sender, EventArgs e)
@@ -44,13 +45,13 @@ public partial class RegisterNewBook : System.Web.UI.Page
     }
     private void clearBoxes()
     {
-        textBoxTitle.Text = " ";
-        textBoxDistribution.Text = " ";
-        textBoxIMBD.Text = " ";
-        textBoxPrice.Text = " ";
-        textBoxPicture.Text = "";
-        textBoxQuantity.Text = "";
-        ddlCategory.SelectedIndex = 0;
+        //textBoxTitle.Text = " ";
+        //textBoxDistribution.Text = " ";
+        //textBoxIMBD.Text = " ";
+        //textBoxPrice.Text = " ";
+        //textBoxPicture.Text = "";
+        //textBoxQuantity.Text = "";
+        //ddlCategory.SelectedIndex = 0;
     }
 
 

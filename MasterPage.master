@@ -32,7 +32,7 @@
                 &nbsp;&nbsp;
                 <asp:Label ID="labelName" runat="server" Text="MY Name"></asp:Label>
                &nbsp;
-                <asp:TextBox ID="textBoxEmail" runat="server" OnTextChanged="TextBox1_TextChanged">Email</asp:TextBox>
+                <asp:TextBox ID="textBoxEmail" runat="server" >Email</asp:TextBox>
                 &nbsp;
                 <asp:TextBox ID="textBoxPassword" runat="server" TextMode="Password">Password</asp:TextBox>
                 &nbsp;
@@ -118,10 +118,10 @@
                      <br />
 &nbsp;<br />
 &nbsp;<asp:AdRotator ID="AdRotator1"  KeywordFilter="Japan" runat="server" DataSourceID="XmlDataSource1" />
-                     <asp:XmlDataSource ID="XmlDataSource1" runat="server"  OnTransforming="XmlDataSource1_Transforming" DataFile="~/Sample1.ads"></asp:XmlDataSource>
+                     <asp:XmlDataSource ID="XmlDataSource1" runat="server"   DataFile="~/Sample1.ads"></asp:XmlDataSource>
                      <br />
 &nbsp;<asp:AdRotator ID="AdRotator2" KeywordFilter="HKR" runat="server" DataSourceID="XmlDataSource2" />
-                     <asp:XmlDataSource ID="XmlDataSource2" runat="server" OnTransforming="XmlDataSource2_Transforming" DataFile="~/Sample1.ads"></asp:XmlDataSource>
+                     <asp:XmlDataSource ID="XmlDataSource2" runat="server"  DataFile="~/Sample1.ads"></asp:XmlDataSource>
                      <br />
 &nbsp;<br />
             </div>
