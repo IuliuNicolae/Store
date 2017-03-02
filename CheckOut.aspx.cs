@@ -106,6 +106,8 @@ public partial class CheckOut : System.Web.UI.Page
         }
 
         conn.Close();
+        sendEmail email = new sendEmail();
+        email.booking_mail(emailCustomer);
         System.Diagnostics.Debug.WriteLine("Last id: "+lastID);
         for (int j = 0; j < movies.Count; j++)
         {

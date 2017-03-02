@@ -32,5 +32,13 @@ public class sendEmail
         this.reciver = recivermail;
         this.subject = "You have registred a new user";
         this.content = "A new user have been created with username " + recivermail;
+        send();
+    }
+    public void booking_mail(string recivermail)
+    {
+        this.reciver = recivermail;
+        this.subject = "Booking created ";
+        this.content = "A booking have bin successfully made!";
+        send();
     }
 }

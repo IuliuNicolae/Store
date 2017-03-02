@@ -32,13 +32,9 @@
                 &nbsp;&nbsp;
                 <asp:Label ID="labelName" runat="server" Text="MY Name"></asp:Label>
                &nbsp;
-                <asp:TextBox ID="textBoxEmail" runat="server" >Email</asp:TextBox>
-                &nbsp;
-                <asp:TextBox ID="textBoxPassword" runat="server" TextMode="Password">Password</asp:TextBox>
-                &nbsp;
+                
                 <asp:Button ID="logBtn" runat="server" Text="Log in" OnClick="Button8_Click1" />
                
-                <asp:LinkButton ID="LinkButton1" runat="server" ForeColor="Red" OnClick="LinkButton1_Click">CreateAccount</asp:LinkButton>
                
              &nbsp;&nbsp;&nbsp;
                 <br />
