@@ -53,7 +53,7 @@ public class dbConnection
     {
         connection();
         MySqlCommand comm = new MySqlCommand(sqlQuery, conn);
-        close();
+        
 
     }
 
