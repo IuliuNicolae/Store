@@ -14,10 +14,10 @@ public class sms
         var authToken = "796260fdb69a948b6305e95d862fd7bf";
         var twilionumber = "+46769449597";
         TwilioClient.Init(accountSid, authToken);
-     /*   MessageResource.Create(
+        MessageResource.Create(
                     from: new PhoneNumber(twilionumber), // From number, must be an SMS-enabled Twilio number
                     to: new PhoneNumber(toNumber), // To number, if using Sandbox see note above
                                                          // Message content
-                    body: message);*/
+                    body: message);
     }
 }

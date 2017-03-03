@@ -32,13 +32,11 @@
         Password:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <asp:RequiredFieldValidator ID="RequiredFieldValidatorPassword" runat="server" ControlToValidate="textBoxPass" Display="Dynamic" ErrorMessage="Password field could not be empty" ForeColor="Red" OnDataBinding="Button10_Click">*</asp:RequiredFieldValidator>
         <asp:TextBox ID="textBoxPass" runat="server"></asp:TextBox>
-        <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="textBoxPass" Display="Dynamic" ErrorMessage="Password is to weak" ForeColor="Red" ValidationExpression="(?!^[0-9]*$)(?!^[a-zA-Z]*$)^([a-zA-Z0-9]{8,10})$" OnDataBinding="Button10_Click">*</asp:RegularExpressionValidator>
     </p>
     <p>
         Repeat password:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <asp:RequiredFieldValidator ID="RequiredFieldValidatorPass2" runat="server" ControlToValidate="textBoxPass2" Display="Dynamic" ErrorMessage="Password confirmation field could not be empty" ForeColor="Red" OnDataBinding="Button10_Click">*</asp:RequiredFieldValidator>
         <asp:TextBox ID="textBoxPass2" runat="server"></asp:TextBox>
-        <asp:CompareValidator ID="CompareValidatorPass2" runat="server" ControlToCompare="textBoxPass" ControlToValidate="textBoxPass2" Display="Dynamic" ErrorMessage="The pasword is not the same" ForeColor="Red" OnDataBinding="Button10_Click">*</asp:CompareValidator>
     </p>
     <p>
         Street:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; 

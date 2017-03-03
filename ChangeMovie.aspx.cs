@@ -51,14 +51,17 @@ public partial class ChangeMovie : System.Web.UI.Page
             ddlCategory.Text = category;
         }
         conn.Close();
+        if (!IsPostBack)
+        {
 
-        textBoxTitle.Text = title;
-        textBoxDistribution.Text = artists;
-        textBoxPicture.Text = picture;
-        textBoxPrice.Text = price;
-        textBoxQuantity.Text = quantity;
-        textBoxIMBD.Text = imdbLink;
+            textBoxTitle.Text = title;
+            textBoxDistribution.Text = artists;
+            textBoxPicture.Text = picture;
+            textBoxPrice.Text = price;
+            textBoxQuantity.Text = quantity;
+            textBoxIMBD.Text = imdbLink;
 
+        }
 
     }
 

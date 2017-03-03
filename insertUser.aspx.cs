@@ -19,9 +19,8 @@ public partial class insertUser : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        //  
+       
       
-        opr = Request.QueryString["opr"].ToString();
         firstName = Request.QueryString["fnm"].ToString();
         lastName = Request.QueryString["lnm"].ToString();
         pass = Request.QueryString["pass"].ToString();
