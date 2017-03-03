@@ -10,7 +10,7 @@ public class sms
 {
     public void Sendsms(string toNumber,string message)
     {
-        var accountSid = "AC0fe67581460dac474a520d18faed3d1a";
+        var accountSid = "AC0fe67581460dac474a520d18faed3d1a";// id från twilio
         var authToken = "796260fdb69a948b6305e95d862fd7bf";
         var twilionumber = "+46769449597";
         TwilioClient.Init(accountSid, authToken);
