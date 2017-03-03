@@ -14,7 +14,10 @@
     <p>
         &nbsp;</p>
     <p>
-        &nbsp;&nbsp;<asp:LinkButton ID="linkNewBook" runat="server" OnClick="LinkButton2_Click">Add new book</asp:LinkButton>
+        &nbsp;&nbsp;<asp:LinkButton ID="linkNewBook" runat="server" OnClick="LinkButton2_Click">Add new movie</asp:LinkButton>
+    </p>
+     <p>
+        <asp:LinkButton ID="LinkButton10" runat="server" OnClick="LinkButton10_Click">View All Movies</asp:LinkButton>
     </p>
     <p>
         &nbsp;&nbsp;<asp:LinkButton ID="linkAllCusomers" runat="server" OnClick="linkAllCusomers_Click">View all customers</asp:LinkButton>
@@ -25,6 +28,7 @@
     <p>
         <asp:LinkButton ID="LinkButton9" runat="server" OnClick="LinkButton9_Click">Statistiq</asp:LinkButton>
     </p>
+    
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="ContentPlaceHolderRight" Runat="Server">
 </asp:Content>
