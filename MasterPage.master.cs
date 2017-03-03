@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-
+using System.Text;
+using System.Security.Cryptography;
 public partial class MasterPage : System.Web.UI.MasterPage
 {
 
@@ -20,20 +15,16 @@ public partial class MasterPage : System.Web.UI.MasterPage
     
     string totalPrice = "";
     static Random rnd;
-    //  List<Books> myBooks;
-    // Books book;
-
+    
     Customers actualCustomer;
     Administrator actualAdmin;
     protected void Page_Load(object sender, EventArgs e)
     {
-        //    myBooks = new List<Books>();
-        // myBooks = (List<Books>)Session["myBooks"];
-        //labelPrice.Text = this.getPrice(myBooks);
+        
         if (!IsPostBack)
         {
 
-            // book = new Books();
+           
             actualCustomer = new Customers();
             
 
@@ -58,29 +49,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
 
             labelName.Text = name;
 
-            /* if (myBooks.Count > 0)
-             {
-                 linckOut.Visible = true;
-                 ddLstBks.Visible = true;
-
-                 ddLstBks.DataTextField = "title";
-                 ddLstBks.DataValueField = "isbn";
-                 ddLstBks.DataSource = myBooks;
-                 ddLstBks.DataBind();
-              //   getPrice(myBooks);
-
-             }
-             else {
-                 linckOut.Visible = false;
-                 ddLstBks.Visible = false;
-
-             }*/
-
-            //   book = getAllBooks();
-
-            //   LinkButton2.Text = book.Title;
-            //   imageBook.ImageUrl = "~/Styles/" + book.Isbn + ".gif";
-            // Session["bookAdd"] = book;
+           
 
         }
     }
@@ -123,6 +92,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
     {
         email = textBoxEmail.Text;
         pass = textBoxPassword.Text;
+        string hash = GenerateSHA256String(pass);
         string loginpass="";
         string firstName = "";
         string lastName = "";
@@ -151,7 +121,8 @@ public partial class MasterPage : System.Web.UI.MasterPage
                    
                 }
                 dbc.close();
-                if (loginpass.Equals(pass) && type.Equals("user"))
+              
+                if (loginpass.Equals(hash) && type.Equals("user"))
                 {
 
                     Customers myCustomer = new Customers(firstName, lastName, email, loginpass, adress, phone);
@@ -159,7 +130,8 @@ public partial class MasterPage : System.Web.UI.MasterPage
                     labelName.Text = myCustomer.FirstName;
 
                 }
-                else if (loginpass.Equals(pass) && type.Equals("admin")) {
+
+                else if (loginpass.Equals(hash) && type.Equals("admin")) {
                  
                     Administrator myAdmin = new Administrator( firstName, email, loginpass);
                     Session["myAdministrator"] = myAdmin;
@@ -399,7 +371,6 @@ public partial class MasterPage : System.Web.UI.MasterPage
     protected void LinkButton8_Click1(object sender, EventArgs e)
     {
         actualCustomer = (Customers)Session["myCustomer"];
-        System.Diagnostics.Debug.WriteLine("Click på rate" + actualCustomer.FirstName);
         if (actualCustomer != null)
         {
             Response.Redirect("SetRate.aspx");
@@ -407,5 +378,22 @@ public partial class MasterPage : System.Web.UI.MasterPage
         
     }
 
-    
+    public static string GenerateSHA256String(string inputString)
+    {
+        SHA256 sha256 = SHA256Managed.Create();
+        byte[] bytes = Encoding.UTF8.GetBytes(inputString);
+        byte[] hash = sha256.ComputeHash(bytes);
+        string myHash;
+        myHash = GetStringFromHash(hash);
+        return myHash;
+    }
+    private static string GetStringFromHash(byte[] hash)
+    {
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < hash.Length; i++)
+        {
+            result.Append(hash[i].ToString("X2"));
+        }
+        return result.ToString();
+    }
 }

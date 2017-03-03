@@ -33,4 +33,9 @@ public partial class AdminTools : System.Web.UI.Page
     {
         Response.Redirect("Test.cshtml");
     }
+
+    protected void LinkButton10_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("AllMovies.aspx");
+    }
 }

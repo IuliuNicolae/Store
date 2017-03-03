@@ -5,11 +5,13 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
+using System.Text;
+using System.Security.Cryptography;
 public partial class Login : System.Web.UI.Page
 {
     string email = "";
     string pass = "";
+
     string queryStr = "";
     MySqlDataReader reader;
     protected void Page_Load(object sender, EventArgs e)
@@ -29,7 +31,9 @@ public partial class Login : System.Web.UI.Page
     protected void logIn()
     {
         email = emailTB.Text;
-        pass = passTB.Text;
+        pass =passTB.Text;
+        string myPass = GenerateSHA256String(pass);
+        
         string loginpass = "";
         string firstName = "";
         string lastName = "";
@@ -47,7 +51,7 @@ public partial class Login : System.Web.UI.Page
                 System.Diagnostics.Debug.WriteLine("read reader");
                 while (reader.Read())
                 {
-                    System.Diagnostics.Debug.WriteLine("reads");
+                    
 
                     firstName = reader.GetString(reader.GetOrdinal("firstName"));
                     lastName = reader.GetString(reader.GetOrdinal("lastName"));
@@ -58,9 +62,10 @@ public partial class Login : System.Web.UI.Page
 
                 }
                 dbc.close();
+              
                 if (loginpass.Equals(pass) && type.Equals("user"))
                 {
-
+                    System.Diagnostics.Debug.WriteLine("pASSS hASH "+pass);
                     Customers myCustomer = new Customers(firstName, lastName, email, loginpass, adress, phone);
                     Session["myCustomer"] = myCustomer;
                     Response.Redirect("Default.aspx");
@@ -69,7 +74,7 @@ public partial class Login : System.Web.UI.Page
                 {
 
                     errorL.Text = "Invalid email or password";
-                    ;
+                    
 
                 }
             }
@@ -87,5 +92,23 @@ public partial class Login : System.Web.UI.Page
 
 
 
+    }
+    public static string GenerateSHA256String(string inputString)
+    {
+        SHA256 sha256 = SHA256Managed.Create();
+        byte[] bytes = Encoding.UTF8.GetBytes(inputString);
+        byte[] hash = sha256.ComputeHash(bytes);
+        string myHash;
+        myHash = GetStringFromHash(hash);
+        return myHash;
+    }
+    private static string GetStringFromHash(byte[] hash)
+    {
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < hash.Length; i++)
+        {
+            result.Append(hash[i].ToString("X2"));
+        }
+        return result.ToString();
     }
 }
