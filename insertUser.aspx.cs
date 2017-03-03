@@ -37,6 +37,9 @@ public partial class insertUser : System.Web.UI.Page
         cmd = new MySql.Data.MySqlClient.MySqlCommand(queryStr, conn);
         cmd.ExecuteReader();
         conn.Close();
+        sms s = new sms();
+        s.Sendsms(phone, "You have been registered att Movie Store");
+        System.Diagnostics.Debug.WriteLine("Phone+ " + email);
         sendEmail mail = new sendEmail();
         mail.newuser_mail(email);
     }

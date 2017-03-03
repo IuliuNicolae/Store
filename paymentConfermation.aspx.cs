@@ -20,6 +20,8 @@ public partial class paymentConfermation : System.Web.UI.Page
         c = (Customers)Session["myCustomer"];
         movies = (List<Movies>)Session["myMovies"];
         addOrder();
+        sms s = new sms();
+        s.Sendsms(c.Phone, "Your order att MovieStore have been mabe and payed");
         string emailCustomer = c.Email;
         System.Diagnostics.Debug.WriteLine("sending mail to" + emailCustomer);
         sendEmail email = new sendEmail();

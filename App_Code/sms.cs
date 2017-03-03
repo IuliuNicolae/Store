@@ -1,26 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿
 using Twilio;
 using Twilio.Rest.Api.V2010.Account;
-using Twilio.Clients;
+using Twilio.Types;
 
 /// <summary>
 /// Summary description for sms
 /// </summary>
 public class sms
 {
-    TwilioRestClient twilio;
-    public void sendSMS()
+    public void Sendsms(string toNumber,string message)
     {
-        // Your Account SID from twilio.com/console
-        var accountSid = "AC676beff501968449ad15264e3725b8ee";
-        // Your Auth Token from twilio.com/console
-        var authToken = "9de765d60758145d1c45b9bb50db6629";
+        var accountSid = "AC0fe67581460dac474a520d18faed3d1a";
+        var authToken = "796260fdb69a948b6305e95d862fd7bf";
+        var twilionumber = "+46769449597";
         TwilioClient.Init(accountSid, authToken);
-        twilio = new TwilioRestClient(accountSid, authToken);
-        twilio.SendMessage("+1YYYYYYYYYY","+1ZZZZZZZZZZ","Hey, Monkey Party at 6PM.Bring Bananas!");
-
+        MessageResource.Create(
+                    from: new PhoneNumber(twilionumber), // From number, must be an SMS-enabled Twilio number
+                    to: new PhoneNumber(toNumber), // To number, if using Sandbox see note above
+                                                         // Message content
+                    body: message);
     }
 }

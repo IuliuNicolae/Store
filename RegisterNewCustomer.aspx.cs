@@ -52,11 +52,16 @@ public partial class RegisterNewCustomer : System.Web.UI.Page
         conn.Close();
             
 
+
+            
+
     }catch(Exception e){
 
 
         }
-        
+        System.Diagnostics.Debug.WriteLine("regester user with phone:  " + phone);
+        sms s = new sms();
+        s.Sendsms("+", "You have been registered att Movie Store");
 
         clearBoxes();
     }
