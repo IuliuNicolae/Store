@@ -63,11 +63,18 @@ public partial class Login : System.Web.UI.Page
                 }
                 dbc.close();
               
-                if (loginpass.Equals(pass) && type.Equals("user"))
+                if (loginpass.Equals(myPass) && type.Equals("user"))
                 {
                     System.Diagnostics.Debug.WriteLine("pASSS hASH "+pass);
                     Customers myCustomer = new Customers(firstName, lastName, email, loginpass, adress, phone);
                     Session["myCustomer"] = myCustomer;
+                    Response.Redirect("Default.aspx");
+                }
+                else if (loginpass.Equals(myPass) && type.Equals("admin"))
+                {
+                    System.Diagnostics.Debug.WriteLine("pASSS hASH " + pass);
+                    Administrator admin = new Administrator(firstName, email, loginpass);
+                    Session["myAdministrator"] = admin;
                     Response.Redirect("Default.aspx");
                 }
                 else

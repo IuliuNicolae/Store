@@ -21,7 +21,7 @@ public partial class AdminTools : System.Web.UI.Page
 
     protected void LinkButton2_Click(object sender, EventArgs e)
     {
-        Response.Redirect("RegisterNewBook.aspx");
+        Response.Redirect("RegisterNewMovie.aspx");
     }
 
     protected void LinkButton8_Click(object sender, EventArgs e)

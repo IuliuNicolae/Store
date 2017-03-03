@@ -73,7 +73,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
         
             if (logBtn.Text.Equals("Log in"))
             {
-                logIn();
+            Response.Redirect("Login.aspx");
                 logBtn.Text = "Log out";
             }
             else if (logBtn.Text.Equals("Log out"))

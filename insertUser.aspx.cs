@@ -6,6 +6,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Net;
 using System.Net.Mail;
+using System.Text;
+using System.Security.Cryptography;
 public partial class insertUser : System.Web.UI.Page
 {
     string firstName,lastName,pass,email,adress, phone,opr;
@@ -23,6 +25,7 @@ public partial class insertUser : System.Web.UI.Page
         firstName = Request.QueryString["fnm"].ToString();
         lastName = Request.QueryString["lnm"].ToString();
         pass = Request.QueryString["pass"].ToString();
+        string hash = GenerateSHA256String(pass);
         email = Request.QueryString["email"].ToString();
         adress = Request.QueryString["adr"].ToString();
         phone = Request.QueryString["phone"].ToString();
@@ -33,7 +36,7 @@ public partial class insertUser : System.Web.UI.Page
         conn.Open();
         queryStr = "";
      
-        queryStr = " INSERT INTO user (email,firstName,lastName,password,address,phone,type ) values ('" + email + "','" + firstName + "','" + lastName + "','" + pass + "','" + adress + "','" + phone + "','user')";
+        queryStr = " INSERT INTO user (email,firstName,lastName,password,address,phone,type ) values ('" + email + "','" + firstName + "','" + lastName + "','" + hash + "','" + adress + "','" + phone + "','user')";
         cmd = new MySql.Data.MySqlClient.MySqlCommand(queryStr, conn);
         cmd.ExecuteReader();
         conn.Close();
@@ -43,5 +46,22 @@ public partial class insertUser : System.Web.UI.Page
         sendEmail mail = new sendEmail();
         mail.newuser_mail(email);
     }
-    
+    public static string GenerateSHA256String(string inputString)
+    {
+        SHA256 sha256 = SHA256Managed.Create();
+        byte[] bytes = Encoding.UTF8.GetBytes(inputString);
+        byte[] hash = sha256.ComputeHash(bytes);
+        string myHash;
+        myHash = GetStringFromHash(hash);
+        return myHash;
+    }
+    private static string GetStringFromHash(byte[] hash)
+    {
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < hash.Length; i++)
+        {
+            result.Append(hash[i].ToString("X2"));
+        }
+        return result.ToString();
+    }
 }
