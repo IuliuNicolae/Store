@@ -33,6 +33,7 @@ public partial class RegisterNewCustomer : System.Web.UI.Page
     }
     private void registerUser()
     {
+        try { 
         firstName = textBoxFName.Text;
         lastName = textBoxLName.Text;
         pass = textBoxPass.Text;
@@ -42,15 +43,19 @@ public partial class RegisterNewCustomer : System.Web.UI.Page
         System.Diagnostics.Debug.WriteLine("SomeText2 " + pass);
 
         String connString = System.Configuration.ConfigurationManager.ConnectionStrings["WebbAppConnString"].ToString();
-                conn = new MySql.Data.MySqlClient.MySqlConnection(connString);
-                conn.Open();
-                queryStr = "";
-                queryStr = "INSERT INTO customers (email,firstName,lastName,password,address,phone) values('" + email  + "','" + firstName + "','" + lastName + "','" + pass + "','" + street + "','" + phone + "')";
-                cmd = new MySql.Data.MySqlClient.MySqlCommand(queryStr, conn);
-                cmd.ExecuteReader();
-                conn.Close();
+        conn = new MySql.Data.MySqlClient.MySqlConnection(connString);
+        conn.Open();
+        queryStr = "";
+        queryStr = "INSERT INTO customers (email,firstName,lastName,password,address,phone) values('" + email + "','" + firstName + "','" + lastName + "','" + pass + "','" + street + "','" + phone + "')";
+        cmd = new MySql.Data.MySqlClient.MySqlCommand(queryStr, conn);
+        cmd.ExecuteReader();
+        conn.Close();
+            
+
+    }catch(Exception e){
 
 
+        }
         
 
         clearBoxes();

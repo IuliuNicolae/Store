@@ -25,20 +25,16 @@
              &nbsp;
                 
                 
-                <asp:Label ID="Label1" runat="server" Text="Old books-old friends"></asp:Label>
+                <asp:Label ID="Label1" runat="server" Text="AJID MovieStore"></asp:Label>
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
              
                 <asp:Label ID="Label2" runat="server" Text="Welcome"></asp:Label>
                 &nbsp;&nbsp;
                 <asp:Label ID="labelName" runat="server" Text="MY Name"></asp:Label>
                &nbsp;
-                <asp:TextBox ID="textBoxEmail" runat="server" OnTextChanged="TextBox1_TextChanged">Email</asp:TextBox>
-                &nbsp;
-                <asp:TextBox ID="textBoxPassword" runat="server" TextMode="Password">Password</asp:TextBox>
-                &nbsp;
+                
                 <asp:Button ID="logBtn" runat="server" Text="Log in" OnClick="Button8_Click1" />
                
-                <asp:LinkButton ID="LinkButton1" runat="server" ForeColor="Red" OnClick="LinkButton1_Click">CreateAccount</asp:LinkButton>
                
              &nbsp;&nbsp;&nbsp;
                 <br />
@@ -118,10 +114,10 @@
                      <br />
 &nbsp;<br />
 &nbsp;<asp:AdRotator ID="AdRotator1"  KeywordFilter="Japan" runat="server" DataSourceID="XmlDataSource1" />
-                     <asp:XmlDataSource ID="XmlDataSource1" runat="server"  OnTransforming="XmlDataSource1_Transforming" DataFile="~/Sample1.ads"></asp:XmlDataSource>
+                     <asp:XmlDataSource ID="XmlDataSource1" runat="server"   DataFile="~/Sample1.ads"></asp:XmlDataSource>
                      <br />
 &nbsp;<asp:AdRotator ID="AdRotator2" KeywordFilter="HKR" runat="server" DataSourceID="XmlDataSource2" />
-                     <asp:XmlDataSource ID="XmlDataSource2" runat="server" OnTransforming="XmlDataSource2_Transforming" DataFile="~/Sample1.ads"></asp:XmlDataSource>
+                     <asp:XmlDataSource ID="XmlDataSource2" runat="server"  DataFile="~/Sample1.ads"></asp:XmlDataSource>
                      <br />
 &nbsp;<br />
             </div>

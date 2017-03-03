@@ -22,8 +22,8 @@ public class Customers
     public Customers(string firstName,string lastName,string email,string pass,string adress, string phone) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.pass = pass;
         this.email = email;
+        this.pass = pass;
         this.adress = adress;
         this.phone = phone;
         

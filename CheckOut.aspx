@@ -15,12 +15,11 @@
     <p>
         <asp:Button ID="Button10" runat="server" OnClick="Button10_Click" style="width: 46px" Text="Back" />
     &nbsp;&nbsp;
-        <asp:Button ID="buttonPay" runat="server" OnClick="buttonPay_Click" Text="Conform Payment" />
         <!--<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="POST"> -->
        
         
         <input type="hidden" name="upload" value="1"/>
-        <input type="hidden" name="return" value="http://localhost:51149/Default.aspx"/>
+        <input type="hidden" name="return" value="http://localhost:64289/paymentConfermation.aspx"/>
         <input type="hidden" name="cmd" value="_cart"/>
         <input type="hidden" name="business" value="business@moviestore.se"/>
         <input type="hidden" name="currency_code" value="SEK"/>
