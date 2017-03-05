@@ -212,7 +212,11 @@ public partial class MasterPage : System.Web.UI.MasterPage
 
     protected void LinkButton7_Click(object sender, EventArgs e)
     {
-        Response.Redirect("OrdersLogg.aspx");
+        actualCustomer = (Customers)Session["myCustomer"];
+        if (actualCustomer != null)
+        {
+            Response.Redirect("OrdersLogg.aspx");
+        }
     }
 
     protected void LinkButton3_Click(object sender, EventArgs e)

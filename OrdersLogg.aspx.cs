@@ -7,10 +7,11 @@ using System.Collections;
 
 public partial class OrdersLogg : System.Web.UI.Page
 {
- 
+    Customers actualCustomer;
     MySql.Data.MySqlClient.MySqlConnection conn;
     protected void Page_Load(object sender, EventArgs e)
     {
+        actualCustomer = (Customers)Session["myCustomer"];
         if (!IsPostBack)
         {
             BindData();
@@ -27,7 +28,7 @@ public partial class OrdersLogg : System.Web.UI.Page
         {
 
 
-            MySqlDataAdapter adp = new MySqlDataAdapter("select * from bookings", cn);
+            MySqlDataAdapter adp = new MySqlDataAdapter("select * from bookings where user_email='"+actualCustomer.Email+"'", cn);
             adp.Fill(dt);
             if (dt.Rows.Count > 0)
             {
