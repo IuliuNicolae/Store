@@ -66,7 +66,8 @@ protected void toHome(object sender, EventArgs e)
         {
             insertMoviesIntoBooking(lastID, Convert.ToInt32(movies[j].Id));
             System.Diagnostics.Debug.WriteLine("Last id: " + lastID);
-            //insertNewRateRow(Convert.ToInt32(movies[j].Id), emailCustomer);
+            insertNewRateRow(Convert.ToInt32(movies[j].Id), emailCustomer);
+            
 
         }
     }
@@ -99,5 +100,23 @@ protected void toHome(object sender, EventArgs e)
             price = "0";
         }
         return price;
+    }
+    protected void insertNewRateRow(int idM, string email)
+    {
+        try
+        {
+            dbConnection dbc = dbConnection.Instance();
+
+
+            queryStr = "insert into comments(movies_id, user_email,betyg, comment, isSetBetyg) values('" + idM + "','" + email + "' ,'" + 0 + "','NONE',false)";
+            dbc.insert(queryStr);
+            dbc.close();
+
+        }
+        catch
+        {
+            System.Diagnostics.Debug.WriteLine("You already bought this movie!!");
+        }
+
     }
 }

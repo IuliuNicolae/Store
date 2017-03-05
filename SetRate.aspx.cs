@@ -34,7 +34,7 @@ public partial class SetRate : System.Web.UI.Page
             conn.Open();
             em = actualCustomer.Email;
             queryStr = "";
-           queryStr = "SELECT id, title from movies,bookings,bookings_has_movies,comments where movies.id = bookings_has_movies.movies_id and bookings_has_movies.Bookings_id = bookings.idBookings and bookings.user_email = '" + em + "' and bookings_has_movies.movies_id=comments.movies_id and bookings.user_email=comments.user_email and comments.isSetBetyg=false";
+           queryStr = "SELECT distinct id, title from movies,bookings,bookings_has_movies,comments where movies.id = bookings_has_movies.movies_id and bookings_has_movies.Bookings_id = bookings.idBookings and bookings.user_email = '" + em + "' and bookings_has_movies.movies_id=comments.movies_id and bookings.user_email=comments.user_email and comments.isSetBetyg=false";
            
             cmd = new MySql.Data.MySqlClient.MySqlCommand(queryStr, conn);
             reader = cmd.ExecuteReader();
@@ -43,13 +43,15 @@ public partial class SetRate : System.Web.UI.Page
                 id = reader.GetString(reader.GetOrdinal("id"));
                 title = reader.GetString(reader.GetOrdinal("title"));
                 allTitles.Add(new Movies(id, title));
+                System.Diagnostics.Debug.Write("Sizeeeeeeeeeeeee:" + allTitles.Count+"id: "+id+" title: "+title);
 
             }
 
             conn.Close();
 
-              ddlMovies.DataValueField = "id";
-            ddlMovies.DataTextField = "title";
+           ddlMovies.DataValueField = "id";
+           ddlMovies.DataTextField = "title";
+            
             ddlMovies.DataSource = allTitles;
             ddlMovies.DataBind();
         }
@@ -68,7 +70,7 @@ public partial class SetRate : System.Web.UI.Page
         int idTemp = Convert.ToInt32(ddlMovies.SelectedValue);
         int betyg = Convert.ToInt32(DropDownListRate.SelectedValue);
       
-       System.Diagnostics.Debug.Write("Movies: "+ddlMovies.SelectedItem + "Esti prost: "+ DropDownListRate.SelectedValue+"id: "+ddlMovies.SelectedItem.Text);
+      
        updateComments(comments,betyg,em,idTemp);
 
     }

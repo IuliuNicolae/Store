@@ -20,7 +20,7 @@
             <div class="menu">
                
                 <asp:Image ID="Image1" runat="server" Height="100px" Width="100px"
-                 AlternateText="Image text" ImageAlign="left" ImageUrl="Styles/oldBook.gif"/>
+                 AlternateText="Image text" ImageAlign="left" ImageUrl="Styles/movies.gif"/>
                
              &nbsp;
                 
@@ -121,11 +121,13 @@
                      <br />
 &nbsp;<br />
             </div>
-             
+             <div class="clear">
+
+             </div>
             <div class="footer">
-                Old shelf
+                The Movies
                 Kristianstad Storagatan 13b
-                book@gmail.com
+                the_movies@gmail.com
                
             </div>
 
